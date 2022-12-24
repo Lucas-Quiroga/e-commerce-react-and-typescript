@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from 'react'
 
-type resultProps = {
-	name: string
-	price: number
-	description: string
-	available: boolean
-}
+// type resultProps = {
+// 	name: string
+// 	price: number
+// 	description: string
+// 	available?: boolean
+//     id: string | number
+// }
 
-const main = () => {
-	const [result, setResult] = useState<resultProps[]>([])
+const Main = ()  =>{
+	const [result, setResult] = useState([])
 
 	useEffect(() => {
-		const api = async () => {
-			const data = await fetch('', {
+		    fetch('https://jsonplaceholdertodos.typicode.com/https://api.unsplash.com/photos?query=t-shirt&client_id=vVXwwNev7aLRGfzmwLGuI0sEWbPkv--WXVXPEq9jy4s', {
 				method: 'GET',
 			})
-			const json = await data.json()
-			setResult(json.result)
-		}
+            .then (response => response.json())
+            .then (res => setResult(res))
+		
+	}, [])	
 
-		api()
-	}, [])
-
-	// https://api.unsplash.com/photos?query=t-shirt&client_id=vVXwwNev7aLRGfzmwLGuI0sEWbPkv--WXVXPEq9jy4s
-	// proba con esta api a ver que onda
-
-	return <div>main</div>
+    console.log(result);
+    
+	return <div>
+{result.map( e=> (
+    <p>{e.id}</p>
+) )
+    </div>
 }
 
-export default main
+export default Main

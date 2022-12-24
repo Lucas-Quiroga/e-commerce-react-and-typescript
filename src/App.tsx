@@ -3,23 +3,14 @@ import Carrito from './pages/Carrito'
 import NuevaRemera from './pages/NuevaRemera'
 import Remera from './pages/Remera'
 import Remeras from './pages/Remeras'
+import Navbar from './components/Navbar/Navbar'
+import Main from './components/Main'
 
 function App() {
 	return (
 		<>
-			<nav>
-				<ul>
-					<li>
-						<Link to='/'>Home</Link>
-					</li>
-					<li>
-						<Link to='/carrito'>Carrito</Link>
-					</li>
-					<li>
-						<Link to='/remeras'>Remeras</Link>
-					</li>
-				</ul>
-			</nav>
+			<Navbar />
+			<Main />
 			<Routes>
 				<Route
 					path='/'
@@ -39,6 +30,7 @@ function App() {
 				<Route path='/remeras/:id' element={<Remera />} />
 				<Route path='/remeras/new' element={<NuevaRemera />} />
 			</Routes>
+
 		</>
 	)
 }
