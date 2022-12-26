@@ -14,6 +14,9 @@ const Navbar = () => {
 					<li>
 						<Link to='/remeras'>Remeras</Link>
 					</li>
+					<li>
+						<Link to='/fetch'>Fetch</Link>
+					</li>
 				</ul>
 			</nav>
   )
