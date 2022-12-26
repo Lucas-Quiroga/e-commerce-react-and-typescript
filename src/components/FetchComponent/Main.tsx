@@ -9,7 +9,10 @@ interface PropsFetch {
 
 
 const Main = ()  =>{
-	const [result, setResult] = useState<CallFetch[]>([])
+	const [result, setResult] = useState<CallFetch[]>([{
+		id: "",
+		title: ""
+	}])
 
 	useEffect(() => {
 		    fetch('https://jsonplaceholder.typicode.com/todos', {
@@ -20,16 +23,19 @@ const Main = ()  =>{
 		
 	}, [])	
     
+	console.log(result);
+	
+
 	return <>
 	<h1>hola soy fetch</h1>
-	{result.map (pro => {
+	{/* {result.map (pro => {
 		return(
 			<div key={pro.id}>
 				<p>{pro.id}</p>
 				<h2>{pro.title}</h2>
 			</div>
 		)
-	})}
+	})} */}
 	
     </>
 }
