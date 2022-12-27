@@ -5,7 +5,7 @@ interface PropsFetch {
 	arrayCall: CallFetch
 }
 
-const MapComponent = ({arrayCall}: PropsFetch) => {
+const MapComponent = () => {
   return (
     <div>MapComponent</div>
   )

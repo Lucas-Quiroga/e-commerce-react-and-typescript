@@ -1,4 +1,6 @@
 export interface CallFetch {
-    id: number | string;
-    title: string;
+    userId: number,
+    id: number,
+    title: string,
+    completed: boolean
   }

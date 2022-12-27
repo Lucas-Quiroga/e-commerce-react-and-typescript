@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import MapComponent from './MapComponent/MapComponent'
 import { CallFetch } from '../../interfaces/CallFetch'
+import userEvent from '@testing-library/user-event'
 
 
-interface PropsFetch {
-	arrayCall: CallFetch
+// interface PropsFetch {
+// 	result: CallFetch[];
+// 	id: string;
+// 	title:string;
+// }
+
+interface AppState {
+	resultProp: Array<CallFetch>
 }
 
 
 const Main = ()  =>{
-	const [result, setResult] = useState<CallFetch[]>([{
-		id: "",
-		title: ""
-	}])
+	const [result, setResult] = useState<AppState["resultProp"]>([])
 
 	useEffect(() => {
 		    fetch('https://jsonplaceholder.typicode.com/todos', {
@@ -27,16 +31,10 @@ const Main = ()  =>{
 	
 
 	return <>
-	<h1>hola soy fetch</h1>
-	{/* {result.map (pro => {
-		return(
-			<div key={pro.id}>
-				<p>{pro.id}</p>
-				<h2>{pro.title}</h2>
-			</div>
-		)
-	})} */}
-	
+		<h1>hola soy fetch</h1>
+		{result.map(e =>(
+			<MapComponent key={e.id} />
+		))}
     </>
 }
 
