@@ -1,13 +1,21 @@
 import React from 'react'
-import { CallFetch } from '../../../interfaces/CallFetch'
 
-interface PropsFetch {
-	arrayCall: CallFetch
-}
+interface CallFetch{
+	userId: number,
+	id: number,
+	title: string,
+	completed: boolean
+  }
 
-const MapComponent = () => {
+
+const MapComponent = ({result} : {result: CallFetch[]}) => {
   return (
-    <div>MapComponent</div>
+    <div>
+
+		{result.map((e,i) =>(
+			<div>{e.title}</div>
+		))}
+	</div>
   )
 }
 

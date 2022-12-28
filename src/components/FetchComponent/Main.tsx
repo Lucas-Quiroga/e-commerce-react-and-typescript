@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import MapComponent from './MapComponent/MapComponent'
-import { CallFetch } from '../../interfaces/CallFetch'
-import userEvent from '@testing-library/user-event'
 
-
-// interface PropsFetch {
-// 	result: CallFetch[];
-// 	id: string;
-// 	title:string;
-// }
-
-interface AppState {
-	resultProp: Array<CallFetch>
-}
+interface CallFetch{
+	userId: number,
+	id: number,
+	title: string,
+	completed: boolean
+  }
 
 
 const Main = ()  =>{
-	const [result, setResult] = useState<AppState["resultProp"]>([])
+	const [result, setResult] = useState<CallFetch[]>([{
+		userId: 0,
+		id: 0,
+		title: "",
+		completed: false
+	}])
 
 	useEffect(() => {
 		    fetch('https://jsonplaceholder.typicode.com/todos', {
@@ -32,11 +31,8 @@ const Main = ()  =>{
 
 	return <>
 		<h1>hola soy fetch</h1>
-		{result.map(e =>(
-			<MapComponent key={e.id} />
-		))}
+		<MapComponent result={result} />
     </>
 }
-// tanteando
 
 export default Main
