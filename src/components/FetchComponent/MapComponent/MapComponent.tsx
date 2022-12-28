@@ -12,9 +12,12 @@ interface CallFetch{
 const MapComponent = ({result} : {result: CallFetch[]}) => {
   return (
     <>
-	{/* <div className="map">{result.map(e =>(
-			<ItemsComponent key={e.id} elementos={e: CallFetch[]} />
-		))}</div> */}
+	<div className="map">
+		{result.map(resp =>(
+
+			<ItemsComponent key={resp.id} respuesta={resp}/>
+
+		))}</div>
 		
 	</>
   )
