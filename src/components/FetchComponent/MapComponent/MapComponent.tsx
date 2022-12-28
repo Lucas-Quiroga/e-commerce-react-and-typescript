@@ -1,4 +1,5 @@
 import React from 'react'
+import ItemsComponent from './ItemsComponent/ItemsComponent'
 
 interface CallFetch{
 	userId: number,
@@ -10,12 +11,12 @@ interface CallFetch{
 
 const MapComponent = ({result} : {result: CallFetch[]}) => {
   return (
-    <div>
-
-		{result.map((e,i) =>(
-			<div>{e.title}</div>
-		))}
-	</div>
+    <>
+	{/* <div className="map">{result.map(e =>(
+			<ItemsComponent key={e.id} elementos={e: CallFetch[]} />
+		))}</div> */}
+		
+	</>
   )
 }
 
