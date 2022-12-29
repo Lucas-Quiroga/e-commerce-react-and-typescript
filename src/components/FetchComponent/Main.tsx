@@ -22,7 +22,7 @@ const Main = ()  =>{
 				method: 'GET',
 			})
             .then (response => response.json())
-            .then (res => setResult(res))
+            .then (res => setResult(res.slice(0,5)))
 		
 	}, [])	
     

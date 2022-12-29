@@ -14,9 +14,7 @@ const MapComponent = ({result} : {result: CallFetch[]}) => {
     <>
 	<div className="map">
 		{result.map(resp =>(
-
 			<ItemsComponent key={resp.id} respuesta={resp}/>
-
 		))}</div>
 		
 	</>

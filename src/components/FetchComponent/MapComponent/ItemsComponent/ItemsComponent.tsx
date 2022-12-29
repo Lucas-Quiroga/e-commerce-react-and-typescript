@@ -10,9 +10,13 @@ interface CallFetch{
 const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
   return (
     <div>
-      {respuesta.title}
-      {respuesta.id}
-      {respuesta.userId}
+      <h1>TITULO: {respuesta.title}</h1>
+      <p>ID: {respuesta.id}</p>
+      <span>USER ID: {respuesta.userId}</span>
+      <hr />
+      <button>
+        COMPRAR {respuesta.completed}
+      </button>
     </div>
   )
 }
