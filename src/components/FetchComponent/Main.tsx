@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MapComponent from './MapComponent/MapComponent'
+import CatalogueFilter from '../CatalogueFilter/CatalogueFilter'
+import "./Main.css"
 
 interface CallFetch{
 	userId: number,
@@ -31,7 +33,10 @@ const Main = ()  =>{
 
 	return <>
 		<h1>hola soy fetch</h1>
+		<div className='view'>
+		<CatalogueFilter />
 		<MapComponent result={result} />
+		</div>
     </>
 }
 
