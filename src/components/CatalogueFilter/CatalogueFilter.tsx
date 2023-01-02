@@ -11,7 +11,6 @@ const CatalogueFilter = () => {
   const handleValue = () => {
     setValue({checked: true})
     console.log("el estado es:" + JSON.stringify(value));
-    
   }
 
   return (

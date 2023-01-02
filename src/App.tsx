@@ -5,6 +5,7 @@ import Remera from './pages/Remera'
 import Remeras from './pages/Remeras'
 import Navbar from './components/Navbar/Navbar'
 import Main from './components/FetchComponent/Main'
+import DetailComponent from './components/DetailComponent/DetailComponent'
 
 function App() {
 	return (
@@ -29,6 +30,7 @@ function App() {
 				<Route path='/remeras/:id' element={<Remera />} />
 				<Route path='/remeras/new' element={<NuevaRemera />} />
 				<Route path='/fetch' element={<Main />} />
+				<Route path='/detail' element={<DetailComponent />} />
 			</Routes>
 
 		</>

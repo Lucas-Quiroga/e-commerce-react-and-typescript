@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react'
+import DetailItemView from './DetailItemView/DetailItemView';
 
 interface ObjectProps {
     id: number;
@@ -31,9 +32,13 @@ const DetailComponent = () => {
     getObj.then(resp => setObject(resp))
     }, [])
     
+    console.log(object);
+    
 
   return (
-    <div>DetailComponent</div>
+    <>
+    <DetailItemView object={object} />
+    </>
   )
 }
 
