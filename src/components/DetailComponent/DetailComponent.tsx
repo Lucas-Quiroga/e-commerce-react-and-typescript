@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react'
+import { idText } from 'typescript';
 import DetailItemView from './DetailItemView/DetailItemView';
 
 interface ObjectProps {
@@ -21,7 +22,14 @@ const obj:ObjectProps = {
 
 const DetailComponent = () => {
 
-    const [object, setObject] = useState({})
+    const [object, setObject] = useState<ObjectProps>({
+      "id": 0,
+      "title": "",
+      "price": 0,
+      "imgPic": "",
+      "stock": 0,
+      "features": ""
+  })
 
     useEffect(() => {
       const getObj = new Promise<ObjectProps>(res => {

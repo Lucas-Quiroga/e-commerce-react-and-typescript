@@ -12,7 +12,9 @@ interface ObjectProps {
 
 const DetailItemView = ({object}:{object:ObjectProps}) => {
   return (
-    <div>DetailItemView</div>
+    <>
+    <h1>{object.title}</h1>
+    </>
   )
 }
 
