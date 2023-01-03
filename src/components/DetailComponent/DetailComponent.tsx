@@ -31,6 +31,10 @@ const DetailComponent = () => {
       "features": ""
   })
 
+
+
+  const [show, setShow] = useState(false);
+
     useEffect(() => {
       const getObj = new Promise<ObjectProps>(res => {
         setTimeout(() => {
@@ -39,13 +43,18 @@ const DetailComponent = () => {
       })
     getObj.then(resp => setObject(resp))
     }, [])
-    
-    console.log(object);
+
+    useEffect(() => {
+      setShow(true)
+      setTimeout(() => {
+        setShow(false)
+      }, 2000);
+    },[])
     
 
   return (
     <>
-    <DetailItemView object={object} />
+    {show ? <div><h1>Cargando..</h1></div> : <DetailItemView object={object} />}
     </>
   )
 }

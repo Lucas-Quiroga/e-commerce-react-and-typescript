@@ -14,6 +14,7 @@ const DetailItemView = ({object}:{object:ObjectProps}) => {
   return (
     <>
     <h1>{object.title}</h1>
+    ¿<img src={object.imgPic} />
     </>
   )
 }

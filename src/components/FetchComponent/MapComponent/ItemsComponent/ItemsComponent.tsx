@@ -1,4 +1,5 @@
 import React from 'react'
+import { ButtonComponent } from '../../../ButtonComponent/ButtonComponent'
 
 interface CallFetch{
 	userId: number,
@@ -17,6 +18,7 @@ const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
       <button>
         COMPRAR {respuesta.completed}
       </button>
+      <ButtonComponent />
     </div>
   )
 }
