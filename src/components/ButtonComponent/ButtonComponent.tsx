@@ -16,7 +16,7 @@ const handlebutton = (value:string) => {
         setIntial(intial - valueDefect)
     } else if (value === "+") {
         setIntial(intial + valueDefect)
-    } else if (intial <= 0 || intial >= 10) {
+    } if (intial <= 0 || intial >= 10) {
         return alert("no puedes restar o sumar mas")
     }
 }
