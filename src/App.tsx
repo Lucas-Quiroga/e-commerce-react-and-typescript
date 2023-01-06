@@ -6,10 +6,11 @@ import Remeras from './pages/Remeras'
 import Navbar from './components/Navbar/Navbar'
 import Main from './components/FetchComponent/Main'
 import DetailComponent from './components/DetailComponent/DetailComponent'
+import CartProvider from './context/CartProvider'
 
 function App() {
 	return (
-		<>
+		<CartProvider>
 			<Navbar />
 			<Routes>
 				<Route
@@ -33,7 +34,7 @@ function App() {
 				<Route path='/detail' element={<DetailComponent />} />
 			</Routes>
 
-		</>
+		</CartProvider>
 	)
 }
 
