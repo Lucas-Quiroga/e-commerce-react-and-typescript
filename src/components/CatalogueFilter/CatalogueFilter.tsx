@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
+import { useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const INTIAL_STATE = {
   checked: false
@@ -13,6 +15,21 @@ const CatalogueFilter = () => {
     console.log("el estado es:" + JSON.stringify(value));
   }
 
+  // function categoryWithSelect() {
+  //   const {clothesId } = useParams();
+  //   useEffect(() => {
+      
+  //     if(clothesId){
+
+  //     }
+    
+  //     return () => {
+  //       second
+  //     }
+  //   }, [third])
+    
+  // }
+
   return (
     <div>
         <div className="productos">
@@ -24,10 +41,12 @@ const CatalogueFilter = () => {
         </div>
         <div className="Genero">
             <h3>Género</h3>
-            <input type="checkbox" id="Hombre" name="Hombre" value="Hombre" />
-            <label > Hombre</label>
-            <input type="checkbox" id="Mujer" name="Mujer" value="Mujer" />
-            <label > Mujer</label>
+            <NavLink to="/category/hombre"><input type="checkbox" id="Hombre" name="Hombre" value="Hombre" />
+            </NavLink><label > Hombre</label>
+
+            <NavLink to="/category/mujer"><input type="checkbox" id="Mujer" name="Mujer" value="Mujer" />
+            </NavLink><label > Mujer</label>
+    
         </div>
 
     </div>

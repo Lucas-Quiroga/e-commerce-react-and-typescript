@@ -16,9 +16,12 @@ const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
       <p>ID: {respuesta.id}</p>
       <span>USER ID: {respuesta.userId}</span>
       <hr />
+      <Link to={'/carrito'}>
       <button>
         COMPRAR {respuesta.completed}
       </button>
+      </Link>
+      
       <ButtonComponent />
       <Link to={`/detail/${respuesta.id}`}>
         <button>Ver detalle</button>
