@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MapComponent from './MapComponent/MapComponent'
 import CatalogueFilter from '../CatalogueFilter/CatalogueFilter'
 import "./Main.css"
+import { useParams } from 'react-router-dom'
 
 interface CallFetch{
 	userId: number,
@@ -19,10 +20,15 @@ const Main = ()  =>{
 		completed: false
 	}])
 
+	const {categoryId} = useParams();
+
 	useEffect(() => {
 		    fetch('https://jsonplaceholder.typicode.com/todos', {
 				method: 'GET',
 			})
+
+			//min 15
+
             .then (response => response.json())
             .then (res => setResult(res.slice(0,5)))
 		
