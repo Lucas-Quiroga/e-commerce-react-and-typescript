@@ -1,4 +1,6 @@
 import React,{useState} from 'react'
+import DetailComponent from '../DetailComponent/DetailComponent'
+import { Link } from 'react-router-dom'
 
 const INTIAL_STATE = {
     intial: 1
@@ -28,7 +30,6 @@ const handlebutton = (value:string) => {
         <div><button onClick={()=> handlebutton("-")}>-</button>
         <span>{intial}</span>
         <button onClick={()=> handlebutton("+")}>+</button></div>
-        <button>Agregar al carrito</button>
     </div>
     
     </>

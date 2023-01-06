@@ -1,5 +1,6 @@
 import React from 'react'
 import { ButtonComponent } from '../../../ButtonComponent/ButtonComponent'
+import { Link } from 'react-router-dom'
 
 interface CallFetch{
 	userId: number,
@@ -19,6 +20,9 @@ const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
         COMPRAR {respuesta.completed}
       </button>
       <ButtonComponent />
+      <Link to={`/detail/${respuesta.id}`}>
+        <button>Ver detalle</button>
+        </Link>
     </div>
   )
 }
