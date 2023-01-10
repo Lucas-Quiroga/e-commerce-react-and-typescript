@@ -10,6 +10,7 @@ interface CallFetch{
 	price: number,
 	  title: string,
 	  category: string
+	  categoryId: string
 	}
 
 const Main = ()  =>{
@@ -18,13 +19,17 @@ const Main = ()  =>{
 		userId: 0,
 		price: 0,
 		title: "",
-		category: ""
+		category: "",
+		categoryId: ""
 	}])
 
 	const {categoryId} = useParams();
 
+	const URL = 'https://apimocha.com/infoapi/posts'
+	
+
 	useEffect(() => {
-		fetch('https://apimocha.com/infoapi/posts', {
+		fetch(URL, {
 			method: 'GET',
 		})
 
@@ -34,27 +39,12 @@ const Main = ()  =>{
 		.then (res => setResult(res.slice(0,5)))
 	
 }, [])	
-
-	// const getFetch = fetch('https://apimocha.com/infoapi/posts', {
-	// 		method: 'GET',
-	// 	})
-
-	// 	useEffect(()=>{
-	// 		if(categoryId){
-	// 			getFetch.then(response => response.json())
-	// 			.then(resolve=>setResult())
-	// 		} 
-	// 	},[])
-
-	
-    
-	console.log(result);
 	
 
 	return <>
 		<h1>hola soy fetch</h1>
 		<div className='view'>
-		<CatalogueFilter />
+		<CatalogueFilter result={result}/>
 		<MapComponent result={result} />
 		</div>
     </>
