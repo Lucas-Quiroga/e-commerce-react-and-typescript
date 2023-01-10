@@ -2,11 +2,12 @@ import React from 'react'
 import ItemsComponent from './ItemsComponent/ItemsComponent'
 
 interface CallFetch{
-	userId: number,
-	id: number,
-	title: string,
-	completed: boolean
-  }
+	  id: number,
+	  userId: number,
+	  price: number,
+	  title: string,
+	  category: string
+	}
 
 
 const MapComponent = ({result} : {result: CallFetch[]}) => {

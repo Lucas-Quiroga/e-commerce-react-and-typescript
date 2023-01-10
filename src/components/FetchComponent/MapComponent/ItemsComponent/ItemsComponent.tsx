@@ -3,10 +3,11 @@ import { ButtonComponent } from '../../../ButtonComponent/ButtonComponent'
 import { Link } from 'react-router-dom'
 
 interface CallFetch{
+  id: number,
 	userId: number,
-	id: number,
+  price: number,
 	title: string,
-	completed: boolean
+	category: string
   }
 
 const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
@@ -15,10 +16,14 @@ const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
       <h1>TITULO: {respuesta.title}</h1>
       <p>ID: {respuesta.id}</p>
       <span>USER ID: {respuesta.userId}</span>
+      <br />
+      <span>PRICE: {respuesta.price}</span>
+      <br />
+      <span>CATEGORY: {respuesta.category}</span>
       <hr />
       <Link to={'/carrito'}>
       <button>
-        COMPRAR {respuesta.completed}
+        COMPRAR
       </button>
       </Link>
       

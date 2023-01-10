@@ -5,34 +5,48 @@ import "./Main.css"
 import { useParams } from 'react-router-dom'
 
 interface CallFetch{
-	userId: number,
 	id: number,
-	title: string,
-	completed: boolean
-  }
-
+	  userId: number,
+	price: number,
+	  title: string,
+	  category: string
+	}
 
 const Main = ()  =>{
 	const [result, setResult] = useState<CallFetch[]>([{
-		userId: 0,
 		id: 0,
+		userId: 0,
+		price: 0,
 		title: "",
-		completed: false
+		category: ""
 	}])
 
 	const {categoryId} = useParams();
 
 	useEffect(() => {
-		    fetch('https://jsonplaceholder.typicode.com/todos', {
-				method: 'GET',
-			})
+		fetch('https://apimocha.com/infoapi/posts', {
+			method: 'GET',
+		})
 
-			//min 15
+		//min 15
 
-            .then (response => response.json())
-            .then (res => setResult(res.slice(0,5)))
-		
-	}, [])	
+		.then (response => response.json())
+		.then (res => setResult(res.slice(0,5)))
+	
+}, [])	
+
+	// const getFetch = fetch('https://apimocha.com/infoapi/posts', {
+	// 		method: 'GET',
+	// 	})
+
+	// 	useEffect(()=>{
+	// 		if(categoryId){
+	// 			getFetch.then(response => response.json())
+	// 			.then(resolve=>setResult())
+	// 		} 
+	// 	},[])
+
+	
     
 	console.log(result);
 	
