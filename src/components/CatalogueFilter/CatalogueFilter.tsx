@@ -27,11 +27,29 @@ const CatalogueFilter = ({result} : {result: CallFetch[]}) => {
     console.log("el estado es:" + JSON.stringify(value));
   }
 
-  useEffect(() => {
-    const getInfo = new Promise(resolve => {
-      resolve(result.filter(categorY => categorY.category === categoryId))
-    })
-  }, [])
+//  console.log(result);
+
+//  const filtrado = result.filter(elemento => elemento.category === categoryId)
+ 
+//  setSearch(filtrado[]);
+ 
+
+
+
+
+
+  // useEffect(() => {
+  //   const getInfo = new Promise(resolve => {
+  //     resolve(result.filter(categorY => categorY.category === categoryId))
+  //   })
+  //   if (categoryId) {
+  //     getInfo.then(respuesta => setSearch(respuesta))
+  //   }
+
+  // }, [])
+
+
+
   
 
   return (
@@ -45,12 +63,12 @@ const CatalogueFilter = ({result} : {result: CallFetch[]}) => {
         </div>
         <div className="Genero">
             <h3>Género</h3>
-            <NavLink to="/category/hombre">
-              <input type="checkbox" id="Hombre" name="Hombre" value="Hombre" />
-            </NavLink><label > Hombre</label>
+            <NavLink to="/category/male">
+              <input type="checkbox" id="male" name="male" value="male" />
+            </NavLink><label > Male</label>
 
-            <NavLink to="/category/mujer"><input type="checkbox" id="Mujer" name="Mujer" value="Mujer" />
-            </NavLink><label > Mujer</label>
+            <NavLink to="/category/female"><input type="checkbox" id="female" name="female" value="female" />
+            </NavLink><label > Female</label>
     
         </div>
 

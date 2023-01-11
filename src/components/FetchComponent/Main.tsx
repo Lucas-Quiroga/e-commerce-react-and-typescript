@@ -11,6 +11,7 @@ interface CallFetch{
 	  title: string,
 	  category: string
 	  categoryId: string
+	  filtrado:[]
 	}
 
 const Main = ()  =>{
@@ -20,8 +21,11 @@ const Main = ()  =>{
 		price: 0,
 		title: "",
 		category: "",
-		categoryId: ""
+		categoryId: "",
+		filtrado: []
 	}])
+
+	const [search, setSearch] = useState<CallFetch[]>([])
 
 	const {categoryId} = useParams();
 
@@ -39,6 +43,14 @@ const Main = ()  =>{
 		.then (res => setResult(res.slice(0,5)))
 	
 }, [])	
+
+//retocar la idea
+
+ const filtrado = result.filter(elemento => elemento.category === categoryId)
+ 
+ setSearch(filtrado);
+ console.log(search);
+
 	
 
 	return <>
