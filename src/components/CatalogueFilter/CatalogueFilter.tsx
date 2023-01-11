@@ -12,7 +12,7 @@ interface CallFetch{
 	price: number,
 	  title: string,
 	  category: string
-    categoryId: string
+
 	}
 
 const CatalogueFilter = ({result} : {result: CallFetch[]}) => {
@@ -20,7 +20,7 @@ const CatalogueFilter = ({result} : {result: CallFetch[]}) => {
   const [value, setValue] = useState(INTIAL_STATE);
   const [search, setSearch] = useState([])
 
-  const {categoryId} = useParams<CallFetch["categoryId"]>();
+  const {categoryId} = useParams();
 
   const handleValue = () => {
     setValue({checked: true})
