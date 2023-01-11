@@ -34,31 +34,27 @@ const Main = ()  =>{
 		fetch(URL)
 		.then (response => response.json())
 		.then (res => setResult(res.slice(0,5)))
-}, [])	
 
-
-
-	useEffect(() => {
-		const filtrado = result.filter((elemento) => elemento.category === "male")
-		setTimeout(() => {
+		if (categoryId) {
+			const filtrado = result.filter((elemento) => elemento.category === "male")
 			setSearch(filtrado);
-		}, 3000);
-	}, [])
+		}
+}, [categoryId])	
 
 	
-	
+
 
 
 	return <>
 		<h1>hola soy fetch</h1>
 		<div className='view'>
-		<CatalogueFilter result={result}/>
+		<CatalogueFilter result={result} />
 		<MapComponent result={result} />
 		<div>
 			{search.map(e => (
-				<div>
+				<div key={e.id}>
 					<h1>HOLA SOY EL COMPONENTE SEARCH</h1>
-				<ul>
+				<ul key={e.id}>
 					<li>{e.title}</li>
 					<li>{e.category}</li>
 				</ul>
