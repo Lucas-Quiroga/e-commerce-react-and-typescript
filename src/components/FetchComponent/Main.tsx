@@ -30,14 +30,14 @@ const Main = ()  =>{
 	const URL = 'https://apimocha.com/infoapi/posts'
 	
 
-	useEffect(() => {
-		fetch(URL)
+	fetch(URL)
 		.then (response => response.json())
 		.then (res => setResult(res.slice(0,5)))
 
+	useEffect(() => {
 		if (categoryId) {
-			const filtrado = result.filter((elemento) => elemento.category === "male")
-			setSearch(filtrado);
+			const filtrado = result.filter((elemento) => elemento.category === categoryId)
+			setResult(filtrado);
 		}
 }, [categoryId])	
 
@@ -50,7 +50,7 @@ const Main = ()  =>{
 		<div className='view'>
 		<CatalogueFilter result={result} />
 		<MapComponent result={result} />
-		<div>
+		{/* <div>
 			{search.map(e => (
 				<div key={e.id}>
 					<h1>HOLA SOY EL COMPONENTE SEARCH</h1>
@@ -60,7 +60,7 @@ const Main = ()  =>{
 				</ul>
 				</div>
 			))}
-		</div>
+		</div> */}
 		</div>
     </>
 }
