@@ -29,28 +29,26 @@ const Main = ()  =>{
 
 	const URL = 'https://apimocha.com/infoapi/posts'
 	
-
-	fetch(URL)
-		.then (response => response.json())
-		.then (res => setResult(res.slice(0,5)))
+	
 
 	useEffect(() => {
+		fetch(URL)
+		.then (response => response.json())
+		.then (res => setResult(res.slice(0,5)))
 		if (categoryId) {
 			const filtrado = result.filter((elemento) => elemento.category === categoryId)
-			setResult(filtrado);
+			//podria cambiarse a setResult pero solucionar con un if
+			setSearch(filtrado);
 		}
 }, [categoryId])	
 
 	
-
-
-
 	return <>
 		<h1>hola soy fetch</h1>
 		<div className='view'>
 		<CatalogueFilter result={result} />
 		<MapComponent result={result} />
-		{/* <div>
+		<div>
 			{search.map(e => (
 				<div key={e.id}>
 					<h1>HOLA SOY EL COMPONENTE SEARCH</h1>
@@ -60,7 +58,7 @@ const Main = ()  =>{
 				</ul>
 				</div>
 			))}
-		</div> */}
+		</div>
 		</div>
     </>
 }
