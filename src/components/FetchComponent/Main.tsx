@@ -24,6 +24,7 @@ const Main = ()  =>{
 	}])
 
 	const [search, setSearch] = useState<CallFetch[]>([])
+	const [show, setShow] = useState(false)
 
 	const {categoryId} = useParams();
 
@@ -39,17 +40,22 @@ const Main = ()  =>{
 			const filtrado = result.filter((elemento) => elemento.category === categoryId)
 			//podria cambiarse a setResult pero solucionar con un if
 			setSearch(filtrado);
+			setShow(true);
+		} else {
+			setShow(false)
 		}
 }, [categoryId])	
 
 	
 	return <>
-		<h1>hola soy fetch</h1>
-		<div className='view'>
-		<CatalogueFilter result={result} />
-		<MapComponent result={result} />
-		<div>
-			{search.map(e => (
+
+
+
+		{
+			show ? 
+			<div>
+				<CatalogueFilter result={result} />
+				{search.map(e => (
 				<div key={e.id}>
 					<h1>HOLA SOY EL COMPONENTE SEARCH</h1>
 				<ul key={e.id}>
@@ -58,9 +64,21 @@ const Main = ()  =>{
 				</ul>
 				</div>
 			))}
-		</div>
-		</div>
+			</div>
+			 : 
+			<div className='view'>
+			<h1>hola soy fetch</h1>
+			<CatalogueFilter result={result} />
+			<MapComponent result={result} />
+			
+			</div>
+		}
+
+		
     </>
 }
 
 export default Main
+
+
+
