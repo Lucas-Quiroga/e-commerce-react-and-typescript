@@ -25,12 +25,11 @@ const Main = ()  =>{
 
 	const [search, setSearch] = useState<CallFetch[]>([])
 	const [show, setShow] = useState(false)
+	const [value, setValue] = useState()
 
 	const {categoryId} = useParams();
 
 	const URL = 'https://apimocha.com/infoapi/posts'
-	
-	
 
 	useEffect(() => {
 		fetch(URL)
@@ -46,15 +45,11 @@ const Main = ()  =>{
 		}
 }, [categoryId])	
 
-	
 	return <>
-
-
-
 		{
 			show ? 
 			<div>
-				<CatalogueFilter result={result} />
+				<CatalogueFilter />
 				{search.map(e => (
 				<div key={e.id}>
 					<h1>HOLA SOY EL COMPONENTE SEARCH</h1>
@@ -68,13 +63,10 @@ const Main = ()  =>{
 			 : 
 			<div className='view'>
 			<h1>hola soy fetch</h1>
-			<CatalogueFilter result={result} />
+			<CatalogueFilter  />
 			<MapComponent result={result} />
-			
 			</div>
 		}
-
-		
     </>
 }
 

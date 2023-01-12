@@ -6,6 +6,8 @@ const INTIAL_STATE = {
   checked: false
 }
 
+type valueReferences = "male" | "female";
+
 interface CallFetch{
 	id: number,
 	  userId: number,
@@ -15,42 +17,38 @@ interface CallFetch{
 
 	}
 
-const CatalogueFilter = ({result} : {result: CallFetch[]}) => {
+const CatalogueFilter = () => {
 
-  const [value, setValue] = useState(INTIAL_STATE);
-  const [search, setSearch] = useState([])
+  // const [value, setValue] = useState(INTIAL_STATE);
+  const [male, setMale] = useState(true)
+  const [female, setFemale] = useState(true)
 
   const {categoryId} = useParams();
 
-  const handleValue = () => {
-    setValue({checked: true})
-    console.log("el estado es:" + JSON.stringify(value));
+  const handleValue = (data:valueReferences) => {
+
+    if(data=="male")
+    {
+      if (male === true) {
+        console.log(data, "our value");
+      }
+      setMale(!male)
+      console.log({female});
+    }
+    if(data=="female")
+    {
+      if (female === true) {
+        console.log(data, "our value");
+        
+      }
+      setFemale(!female)
+      console.log({male});
+    }
+
+
+    // setValue({checked: true})
+    // console.log("el estado es:" + JSON.stringify(value));
   }
-
-//  console.log(result);
-
-//  const filtrado = result.filter(elemento => elemento.category === categoryId)
- 
-//  setSearch(filtrado[]);
- 
-
-
-
-
-
-  // useEffect(() => {
-  //   const getInfo = new Promise(resolve => {
-  //     resolve(result.filter(categorY => categorY.category === categoryId))
-  //   })
-  //   if (categoryId) {
-  //     getInfo.then(respuesta => setSearch(respuesta))
-  //   }
-
-  // }, [])
-
-
-
-  
 
   return (
     <div>
@@ -64,11 +62,11 @@ const CatalogueFilter = ({result} : {result: CallFetch[]}) => {
         <div className="Genero">
             <h3>Género</h3>
             <NavLink to="/category/male">
-              <input type="checkbox" id="male" name="male" value="male" />
-            </NavLink><label > Male</label>
-
-            <NavLink to="/category/female"><input type="checkbox" id="female" name="female" value="female" />
-            </NavLink><label > Female</label>
+              <input type="checkbox" id="male" name="male" value={"male"} onChange={()=>handleValue("male")} /> Male
+            </NavLink>
+              {/* los values tendrian que ir sin las comillas */}
+            <NavLink to="/category/female"><input type="checkbox" id="female" name="female" value={"female"} onChange={()=>handleValue("female")} /> Female
+            </NavLink>
     
         </div>
 
