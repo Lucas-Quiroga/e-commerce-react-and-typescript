@@ -15,7 +15,7 @@ const Navbar = () => {
 						<Link to='/remeras'>Remeras</Link>
 					</li>
 					<li>
-						<Link to='/fetch'>Fetch</Link>
+						<Link to='/category'>Categorias</Link>
 					</li>
 					<li>
 						<Link to="./detail">Detalle</Link>

@@ -31,42 +31,38 @@ const Main = ()  =>{
 
 	const URL = 'https://apimocha.com/infoapi/posts'
 
-	useEffect(() => {
-		fetch(URL)
+	
+
+	//logica para que antes de que guarde todos los datos primero los filtre
+	fetch(URL)
 		.then (response => response.json())
-		.then (res => setResult(res.slice(0,5)))
+		// cambie el slice del setResult por el setSearch
+		.then (res => setSearch(res))
+		
+		
+	useEffect(() => {
 		if (categoryId) {
-			const filtrado = result.filter((elemento) => elemento.category === categoryId)
+			const filtrado = search.filter((elemento) => elemento.category === categoryId)
 			//podria cambiarse a setResult pero solucionar con un if
-			setSearch(filtrado);
+			setResult(filtrado);
 			setShow(true);
 		} else {
 			setShow(false)
 		}
-}, [categoryId])	
+}, [categoryId])
+
+
 
 	return <>
-		{
-			show ? 
-			<div>
-				<CatalogueFilter />
-				{search.map(e => (
-				<div key={e.id}>
-					<h1>HOLA SOY EL COMPONENTE SEARCH</h1>
-				<ul key={e.id}>
-					<li>{e.title}</li>
-					<li>{e.category}</li>
-				</ul>
-				</div>
-			))}
-			</div>
-			 : 
+	
+	
+			
 			<div className='view'>
-			<h1>hola soy fetch</h1>
+			{/* <h1>hola soy fetch</h1> */}
 			<CatalogueFilter  />
 			<MapComponent result={result} />
 			</div>
-		}
+			
     </>
 }
 

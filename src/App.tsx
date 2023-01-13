@@ -30,7 +30,7 @@ function App() {
 				<Route path='/remeras' element={<Remeras />} />
 				<Route path='/remeras/:id' element={<Remera />} />
 				<Route path='/remeras/new' element={<NuevaRemera />} />
-				<Route path='/fetch' element={<Main />} />
+				<Route path='/category' element={<Main />} />
 				<Route path='/category/:categoryId' element={<Main />} />
 				<Route path='/detail/:detailId' element={<DetailComponent />} />
 			</Routes>
