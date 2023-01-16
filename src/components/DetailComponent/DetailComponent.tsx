@@ -103,12 +103,14 @@ const DetailComponent = () => {
   const [show, setShow] = useState(false);
 
     useEffect(() => {
-      const getObj = new Promise<ObjectProps>(res => {
+      const getObj = new Promise<ObjectProps[]>(res => {
         setTimeout(() => {
-            res(obj)
+            res(arrayRopa)
         }, 2000);
       })
-    getObj.then(resp => setObject(resp))
+      // buscar con find el detalle
+
+    // getObj.then(resp => setObject(resp.find(film => film.id === detailId)))
     
     
     }, [])
