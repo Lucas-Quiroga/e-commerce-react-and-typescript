@@ -37,12 +37,12 @@ const Main = ()  =>{
 	fetch(URL)
 		.then (response => response.json())
 		// cambie el slice del setResult por el setSearch
-		.then (res => setSearch(res))
+		.then (res => setResult(res))
 		
 		
 	useEffect(() => {
 		if (categoryId) {
-			const filtrado = search.filter((elemento) => elemento.category === categoryId)
+			const filtrado = result.filter((elemento) => elemento.category === categoryId)
 			//podria cambiarse a setResult pero solucionar con un if
 			setResult(filtrado);
 			setShow(true);
