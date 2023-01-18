@@ -3,6 +3,7 @@ import MapComponent from './MapComponent/MapComponent'
 import CatalogueFilter from '../CatalogueFilter/CatalogueFilter'
 import "./Main.css"
 import { useParams } from 'react-router-dom'
+import MapComponentFilter from './MapComponent/MapComponentFilter'
 
 type CallFetchCategory = "male" | "female";
 
@@ -44,7 +45,7 @@ const Main = ()  =>{
 		if (categoryId) {
 			const filtrado = result.filter((elemento) => elemento.category === categoryId)
 			//podria cambiarse a setResult pero solucionar con un if
-			setResult(filtrado);
+			setSearch(filtrado);
 			setShow(true);
 		} else {
 			setShow(false)
@@ -54,14 +55,21 @@ const Main = ()  =>{
 
 
 	return <>
-	
-	
-			
-			<div className='view'>
-			{/* <h1>hola soy fetch</h1> */}
+
+	{search ? (
+			<div>
+			<CatalogueFilter  />
+			<MapComponentFilter search={search} />
+			</div>)
+			: (
+		    <div className='view'>
 			<CatalogueFilter  />
 			<MapComponent result={result} />
 			</div>
+			)}
+	
+			
+			
 			
     </>
 }
