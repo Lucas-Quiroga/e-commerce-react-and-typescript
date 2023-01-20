@@ -56,8 +56,8 @@ const Main = ()  =>{
 
 	return <>
 
-	{search ? (
-			<div>
+	{show ? (
+			<div className='view'>
 			<CatalogueFilter  />
 			<MapComponentFilter search={search} />
 			</div>)
