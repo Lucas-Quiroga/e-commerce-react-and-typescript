@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 import Main from './components/FetchComponent/Main'
 import DetailComponent from './components/DetailComponent/DetailComponent'
 import CartProvider from './context/CartProvider'
+import "./App.css"
 
 function App() {
 	return (

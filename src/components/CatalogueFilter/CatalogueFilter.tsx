@@ -60,10 +60,10 @@ const CatalogueFilter = () => {
         <div className="Genero">
             <h3>Género</h3>
             <NavLink to="/category/male">
-              <input type="checkbox" id="male" name="male"  onChange={(e)=>handleValue("male")} /> Male
+              <input value="male" type="checkbox" id="male" name="male"  onChange={(e)=>handleValue("male")} /> Male
             </NavLink>
               {/* los values tendrian que ir sin las comillas */}
-            <NavLink to="/category/female"><input type="checkbox" id="female" name="female" onChange={(e)=>handleValue("female")} /> Female
+            <NavLink to="/category/female"><input value="Female" type="checkbox" id="female" name="female" onChange={(e)=>handleValue("female")} /> Female
             </NavLink>
     
         </div>
