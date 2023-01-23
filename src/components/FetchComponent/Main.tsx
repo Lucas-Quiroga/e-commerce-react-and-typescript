@@ -7,6 +7,14 @@ import MapComponentFilter from './MapComponent/MapComponentFilter'
 
 type CallFetchCategory = "male" | "female";
 
+const INTIAL_STATE:CallFetch[]= [{
+	id: 0,
+	userId: 0,
+	price: 0,
+	title: "",
+	category: "female",
+}]
+
 interface CallFetch{
 	  id: number,
 	  userId: number,
@@ -16,13 +24,7 @@ interface CallFetch{
 	}
 
 const Main = ()  =>{
-	const [result, setResult] = useState<CallFetch[]>([{
-		id: 0,
-		userId: 0,
-		price: 0,
-		title: "",
-		category: "female",
-	}])
+	const [result, setResult] = useState<CallFetch[]>(INTIAL_STATE)
 
 	const [search, setSearch] = useState<CallFetch[]>([])
 	const [show, setShow] = useState(false)
@@ -56,7 +58,8 @@ const Main = ()  =>{
 
 	return <>
 
-	{show ? (
+	//poner el "cargando en pantalla"
+	{show && result === INTIAL_STATE ? (
 			<div className='view'>
 			<CatalogueFilter  />
 			<MapComponentFilter search={search} />
