@@ -1,20 +1,19 @@
 import React from 'react'
 
-interface ObjectProps {
-    id: number;
-    title: string;
-    price: number;
-    imgPic: string;
-    stock: number;
-    features: string;
+type CallFetchCategory = "male" | "female";
+
+interface CallFetch{
+  id: number,
+  userId: number,
+  price: number,
+  title: string,
+  category: CallFetchCategory
 }
 
-
-const DetailItemView = ({object}:{object:ObjectProps}) => {
+const DetailItemView = ({object}:{object:CallFetch}) => {
   return (
     <>
     <h1>{object.title}</h1>
-    ¿<img src={object.imgPic} />
     </>
   )
 }

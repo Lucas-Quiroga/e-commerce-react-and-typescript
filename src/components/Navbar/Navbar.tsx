@@ -18,9 +18,9 @@ const Navbar = () => {
 					<li>
 						<Link to='/category'>Categorias</Link>
 					</li>
-					<li>
+					{/* <li>
 						<Link to="./detail">Detalle</Link>
-					</li>
+					</li> */}
 				</ul>
 			</nav>
   )
