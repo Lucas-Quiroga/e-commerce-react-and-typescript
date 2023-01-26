@@ -4,6 +4,7 @@ import CatalogueFilter from '../CatalogueFilter/CatalogueFilter'
 import "./Main.css"
 import { useParams } from 'react-router-dom'
 import MapComponentFilter from './MapComponent/MapComponentFilter'
+import api from '../../api'
 
 type CallFetchCategory = "male" | "female";
 
@@ -37,11 +38,17 @@ const Main = ()  =>{
 	
 
 	//logica para que antes de que guarde todos los datos primero los filtre
-	fetch(URL)
-		.then (response => response.json())
-		// cambie el slice del setResult por el setSearch
-		.then (res => setResult(res))
+	// fetch(api)
+	// 	.then (response => response.json())
+	// 	// cambie el slice del setResult por el setSearch
+	// 	.then (res => setResult(res))
 		
+	useEffect(() => {
+	  api.then(res => setResult(res))
+	  console.log(result);
+	  
+	}, [])
+	
 		
 	useEffect(() => {
 		if (categoryId) {
@@ -58,8 +65,7 @@ const Main = ()  =>{
 
 	return <>
 
-	//poner el "cargando en pantalla"
-	{show && result === INTIAL_STATE ? (
+	{show ? (
 			<div className='view'>
 			<CatalogueFilter  />
 			<MapComponentFilter search={search} />

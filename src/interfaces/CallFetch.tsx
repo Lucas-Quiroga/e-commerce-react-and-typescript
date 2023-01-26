@@ -1,6 +1,9 @@
-export interface CallFetch {
-  userId: number,
+type CallFetchCategory = "male" | "female";
+
+export interface CallFetch{
   id: number,
+  userId: number,
+  price: number,
   title: string,
-  completed: boolean
+  category: CallFetchCategory
 }
