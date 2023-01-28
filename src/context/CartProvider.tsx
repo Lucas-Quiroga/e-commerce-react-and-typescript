@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { CartContext } from './CartContext'
 import { Cart, CartState } from '../interfaces/interface'
 
@@ -12,7 +12,8 @@ interface props {
     children: JSX.Element | JSX.Element[]
 }
 
-
+const {Provider} = CartContext;
+export const ContextCart = () => useContext(CartContext);
 
 
 const CartProvider = ({children}: props) => {
@@ -34,9 +35,9 @@ const CartProvider = ({children}: props) => {
 
   return (
     // HIGH ORDER COMPONENT
-    <CartContext.Provider value={{clearCart,isInCart,removeItem}}>
+    <Provider value={{clearCart,isInCart,removeItem}}>
         {children}
-    </ CartContext.Provider >
+    </ Provider >
   )
 }
 

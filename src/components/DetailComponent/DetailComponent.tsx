@@ -25,7 +25,7 @@ interface CallFetch{
 const DetailComponent = () => {
 
   const [object, setObject] = useState<CallFetch[]>(INTIAL_STATE)
-  const [detailObject, setDetailObject] = useState([])
+  const [detailObject, setDetailObject] = useState({})
   const [show, setShow] = useState(false);
 
   const {detailId} = useParams();
@@ -36,7 +36,7 @@ const DetailComponent = () => {
     if (detailId) {
 			const filtrado = object.find((elemento) => elemento.id === parseInt(detailId))
 
-			setDetailObject(filtrado);
+			// setDetailObject(filtrado);
 			setShow(true);
 		} else {
 			setShow(false)
@@ -59,7 +59,7 @@ const DetailComponent = () => {
 
   return (
     <>
-    {show ? <div><h1>Cargando..</h1></div> : <DetailItemView object={object} />}
+    {/* {show ? <div><h1>Cargando..</h1></div> : <DetailItemView object={object} />} */}
     </>
   )
 }
