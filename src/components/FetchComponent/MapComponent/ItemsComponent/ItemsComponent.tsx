@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonComponent } from '../../../ButtonComponent/ButtonComponent'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { ContextCart } from '../../../../context/CartProvider'
+
 
 interface CallFetch{
   id: number,
@@ -14,7 +14,7 @@ interface CallFetch{
 
 const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
 
-  const { isInCart } = useContext(ContextCart);
+
 
 
   return (
@@ -37,7 +37,7 @@ const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
       <Link to={`/detail/${respuesta.id}`}>
         <button>Ver detalle</button>
         </Link>
-        <button onClick={}>Agregar al carrito</button>
+        <button>Agregar al carrito</button>
     </div>
   )
 }

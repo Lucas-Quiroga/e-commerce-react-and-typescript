@@ -1,43 +1,69 @@
 import React, {useContext, useState} from 'react'
-import { CartContext } from './CartContext'
 import { Cart, CartState } from '../interfaces/interface'
+import { createContext } from "react";
 
 
-// const INTIAL_STATE:CartState = {
-//     //llenar 
-// }
+export const TodoContext = React.createContext<TodoContextType | null>(null);
 
+export interface ITodo {
+  id: number;
+  title: string;
+  description: string;
+  status: boolean;
+}
+export type TodoContextType = {
+  todos: ITodo[];
+  saveTodo: (todo: ITodo) => void;
+  updateTodo: (id: number) => void;
+};
 
 interface props {
     children: JSX.Element | JSX.Element[]
 }
 
-const {Provider} = CartContext;
-export const ContextCart = () => useContext(CartContext);
 
+const CartProvider = ({children}:any) => {
 
-const CartProvider = ({children}: props) => {
+  const [todos, setTodos] = React.useState<ITodo[]>([
+    {
+      id: 1,
+      title: 'post 1',
+      description: 'this is a description',
+      status: false,
+    },
+    {
+      id: 2,
+      title: 'post 2',
+      description: 'this is a description',
+      status: true,
+    },
+  ]);
 
-    const [cart, setCart] = useState([])
-
-    const clearCart = () => {
-      setCart([]);
-    };
+  const saveTodo = (todo: ITodo) => {
+    const newTodo: ITodo = {
+      id: Math.random(), // not really unique - but fine for this example
+      title: todo.title,
+      description: todo.description,
+      status: false,
+    }
+    setTodos([...todos, newTodo])
+  }
   
-    const isInCart = (id:any) => {
-      return cart.find((prod:any) => prod.id === id) ? true : false;
-    };
-  
-    const removeItem = (id:any) => {
-      setCart(cart.filter((prod:any) => prod.id !== id));
-    };
+  const updateTodo = (id: number) => {
+    todos.filter((todo: ITodo) => {
+      if (todo.id === id) {
+        todo.status = true
+        setTodos([...todos])
+      }
+    })
+  }
 
 
   return (
     // HIGH ORDER COMPONENT
-    <Provider value={{clearCart,isInCart,removeItem}}>
-        {children}
-    </ Provider >
+    <TodoContext.Provider value={{ todos, saveTodo, updateTodo }}>
+    {children}
+  </TodoContext.Provider>
   )
 }
 
