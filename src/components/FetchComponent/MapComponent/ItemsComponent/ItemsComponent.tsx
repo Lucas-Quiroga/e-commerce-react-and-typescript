@@ -4,19 +4,24 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { CartContext, TodoContextType } from '../../../../context/CartContext'
 
+type CallFetchCategory = "male" | "female";
 
 interface CallFetch{
   id: number,
 	userId: number,
   price: number,
 	title: string,
-	category: string
+	category: CallFetchCategory
   }
 
 const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
 
 const {addToCart, deleteToCart, cleanCart} = React.useContext(CartContext) as TodoContextType
 
+
+const additem = (item:CallFetch) => {
+  addToCart({...item, id: Math.random()})
+}
 
   return (
     <div>
@@ -38,7 +43,7 @@ const {addToCart, deleteToCart, cleanCart} = React.useContext(CartContext) as To
       <Link to={`/detail/${respuesta.id}`}>
         <button>Ver detalle</button>
         </Link>
-        <button>Agregar al carrito</button>
+        <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
     </div>
   )
 }

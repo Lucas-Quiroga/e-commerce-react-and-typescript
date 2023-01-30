@@ -40,9 +40,21 @@ const CartProvider = ({children}:any) => {
   }
 
   const addToCart = (item:CallFetch) => {
-    const newCart = itemsCart.filter((prod) => prod.id !== item.id);
-    setItemsCart(newCart);
-  }
+    const itemIndex = itemsCart.findIndex((item) => item.id === item.id);
+    if (itemIndex !== -1) {
+      setItemsCart(
+        itemsCart.map((p) =>
+          p.id === item.id
+            ? { ...p }
+            : p
+        )
+      );
+    } else {
+      setItemsCart([item, ...itemsCart]);
+    }
+    console.log(itemsCart);
+    
+  };
 
   const deleteToCart = (id:number) => {
     setItemsCart(itemsCart.filter((product)=> product.id !== id))
