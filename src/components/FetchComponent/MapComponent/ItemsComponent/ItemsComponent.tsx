@@ -2,6 +2,7 @@ import React from 'react'
 import { ButtonComponent } from '../../../ButtonComponent/ButtonComponent'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
+import { CartContext, TodoContextType } from '../../../../context/CartContext'
 
 
 interface CallFetch{
@@ -14,7 +15,7 @@ interface CallFetch{
 
 const ItemsComponent = ({respuesta} : {respuesta: CallFetch}) => {
 
-
+const {addToCart, deleteToCart, cleanCart} = React.useContext(CartContext) as TodoContextType
 
 
   return (

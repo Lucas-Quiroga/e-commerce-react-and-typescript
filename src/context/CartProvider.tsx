@@ -1,21 +1,9 @@
-import React, {useContext, useState} from 'react'
-import { Cart, CartState } from '../interfaces/interface'
-import { createContext } from "react";
+import React, {useState} from 'react'
+import { CallFetch } from '../interfaces/CallFetch';
+import { CartContext } from './CartContext';
+import { TodoContextType } from './CartContext';
 
-
-export const TodoContext = React.createContext<TodoContextType | null>(null);
-
-export interface ITodo {
-  id: number;
-  title: string;
-  description: string;
-  status: boolean;
-}
-export type TodoContextType = {
-  todos: ITodo[];
-  saveTodo: (todo: ITodo) => void;
-  updateTodo: (id: number) => void;
-};
+const {Provider} = CartContext;
 
 interface props {
     children: JSX.Element | JSX.Element[]
@@ -24,46 +12,48 @@ interface props {
 
 const CartProvider = ({children}:any) => {
 
-  const [todos, setTodos] = React.useState<ITodo[]>([
-    {
-      id: 1,
-      title: 'post 1',
-      description: 'this is a description',
-      status: false,
-    },
-    {
-      id: 2,
-      title: 'post 2',
-      description: 'this is a description',
-      status: true,
-    },
-  ]);
+  // const [todos, setTodos] = React.useState<CallFetch[]>([]);
 
-  const saveTodo = (todo: ITodo) => {
-    const newTodo: ITodo = {
-      id: Math.random(), // not really unique - but fine for this example
-      title: todo.title,
-      description: todo.description,
-      status: false,
-    }
-    setTodos([...todos, newTodo])
-  }
+  const [itemsCart, setItemsCart] = React.useState<CallFetch[]>([]);
+
+  // const saveTodo = (todo: ITodo) => {
+  //   const newTodo: ITodo = {
+  //     id: Math.random(), // not really unique - but fine for this example
+  //     title: todo.title,
+  //     description: todo.description,
+  //     status: false,
+  //   }
+  //   setTodos([...todos, newTodo])
+  // }
   
-  const updateTodo = (id: number) => {
-    todos.filter((todo: ITodo) => {
-      if (todo.id === id) {
-        todo.status = true
-        setTodos([...todos])
-      }
-    })
+  // const updateTodo = (id: number) => {
+  //   todos.filter((todo: ITodo) => {
+  //     if (todo.id === id) {
+  //       todo.status = true
+  //       setTodos([...todos])
+  //     }
+  //   })
+  // }
+
+  const cleanCart = () => {
+    setItemsCart([])
+  }
+
+  const addToCart = (item:CallFetch) => {
+    const newCart = itemsCart.filter((prod) => prod.id !== item.id);
+    setItemsCart(newCart);
+  }
+
+  const deleteToCart = (id:number) => {
+    setItemsCart(itemsCart.filter((product)=> product.id !== id))
   }
 
 
   return (
     // HIGH ORDER COMPONENT
-    <TodoContext.Provider value={{ todos, saveTodo, updateTodo }}>
+    <CartContext.Provider value={{ itemsCart, cleanCart, addToCart, deleteToCart }}>
     {children}
-  </TodoContext.Provider>
+  </CartContext.Provider>
   )
 }
 
