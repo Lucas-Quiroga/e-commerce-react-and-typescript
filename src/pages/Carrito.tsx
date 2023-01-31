@@ -9,26 +9,32 @@ type useStatential = {
 
 function Carrito() {
 
-  const {itemsCart, totalCart, totalCartPrice} = React.useContext(CartContext) as TodoContextType
+  const {itemsCart} = React.useContext(CartContext) as TodoContextType
 
   const [total, setTotal] = React.useState<useStatential>()
 
-  const totalApagar = totalCartPrice
+  if (itemsCart.length === 0) {
+    return <h2>no hay elementos</h2>
+  }
+  
+  
+  let totalCart = itemsCart.reduce((acc, elem) => acc + elem.price, 0)
+  
 
   return (
     <div>
       <div>
       {itemsCart.map(elementos => (
-        <ul>
+        <ul key={elementos.id}>
           <li key={elementos.id}>
             <h5>{elementos.title}</h5>
             <h6>Price: ${elementos.price}</h6>
           </li>
           <hr />
-          <p className="p">The total of your purchase is: ${totalApagar}</p>
         </ul>
+        
       ))}
-   
+      <h2 style={{color: "white"}}>Total a pagar: ${totalCart}</h2>
     </div>
     </div>
   )
