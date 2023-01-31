@@ -13,6 +13,7 @@ interface props {
 const CartProvider = ({children}:any) => {
 
   const [itemsCart, setItemsCart] = React.useState<CallFetch[]>([]);
+  const [totalCartPrice, setTotalCartPrice] = useState<number>()
 
   const cleanCart = () => {
     setItemsCart([])
@@ -35,10 +36,14 @@ const CartProvider = ({children}:any) => {
     setItemsCart(itemsCart.filter((product)=> product.id !== id))
   }
 
+  const totalCart = () => {
+    setTotalCartPrice(itemsCart.reduce((acc, elem) => acc + elem.price, 0))
+  }
+
 
   return (
     // HIGH ORDER COMPONENT
-    <CartContext.Provider value={{ itemsCart, cleanCart, addToCart, deleteToCart }}>
+    <CartContext.Provider value={{ itemsCart,totalCartPrice, cleanCart, addToCart, deleteToCart, totalCart }}>
     {children}
   </CartContext.Provider>
   )

@@ -17,6 +17,8 @@ export type TodoContextType = {
     cleanCart: () => void;
     addToCart: (item: CallFetch) => void;
     deleteToCart: (id: number) => void;
+    totalCart:() => void;
+    totalCartPrice?: number;
   };
 
 export const CartContext = createContext<TodoContextType | null>(null);
