@@ -1,0 +1,20 @@
+.Carousel{
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.control-arrow control-prev{
+    background-color: blue;
+}
+
+.picsCarousel{
+    width: 40rem;
+    height: 40rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
