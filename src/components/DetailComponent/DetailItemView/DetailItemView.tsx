@@ -2,18 +2,21 @@ import React from 'react'
 
 type CallFetchCategory = "male" | "female";
 
-interface CallFetch{
-  id: number,
-  userId: number,
-  price: number,
-  title: string,
-  category: CallFetchCategory
+type objectProps = {
+  id?: number;
+  userId?: number;
+  price?: number;
+  title?: string;
+  category?: CallFetchCategory;
 }
 
-const DetailItemView = ({object}:{object:CallFetch}) => {
+const DetailItemView = ({detailObject}: {detailObject: objectProps}) => {
+  console.log(detailObject);
+  
   return (
     <>
-    <h1>{object.title}</h1>
+    {detailObject.title}
+    {detailObject.category}
     </>
   )
 }

@@ -45,8 +45,6 @@ const Main = ()  =>{
 		
 	useEffect(() => {
 	  api.then(res => setResult(res))
-	  console.log(result);
-	  
 	}, [])
 	
 		
