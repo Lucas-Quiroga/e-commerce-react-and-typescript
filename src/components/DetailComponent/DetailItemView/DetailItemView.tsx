@@ -3,11 +3,11 @@ import React from 'react'
 type CallFetchCategory = "male" | "female";
 
 type objectProps = {
-  id?: number;
-  userId?: number;
-  price?: number;
-  title?: string;
-  category?: CallFetchCategory;
+  id: number;
+  userId: number;
+  price: number;
+  title: string;
+  category: CallFetchCategory;
 }
 
 const DetailItemView = ({detailObject}: {detailObject: objectProps}) => {
