@@ -4,67 +4,38 @@ import DetailItemView from './DetailItemView/DetailItemView';
 import { CallFetch } from '../../interfaces/CallFetch';
 import api from '../../api';
 
-type objectProp = CallFetch[];
-
-type paramString = {
-  detailId: string;
-}
-
-
 const DetailComponent = () => {
 
-  const [object, setObject] = useState() 
-  const [detailObject, setDetailObject] = useState()
+  const [objects, setObjects] = useState<CallFetch[]>([]) 
+  const [detailObject, setDetailObject] = useState<CallFetch>({
+    id: 0,
+    userId:0,
+    price:0,
+    title: "",
+    category: "male"
+  })
   const [show, setShow] = useState(false);
 
   const {detailId}= useParams();
 
-   useEffect(() => {
-        api.then((res) => setObject(res.find((prod) => prod.id === Number(detailId))))
-    }, [])
 
-//   useEffect(() => {
-//     if(detailId) {
-//       const filtrado = object.find((prod) => prod.id === Number(detailId))
-//       setDetailObject(filtrado)
-//     }
-// }, [detailId])
+  useEffect(() => {
+    api.then(e => setObjects(e))
+  }, [])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-  //   useEffect(() => {
-
-
-  //     object.
-
-
-
-  //         // .then((res) => {
-  //         //     setItem(res.find((prod) => prod.id === Number(itemId) ))
-  //         // })
-  //         // .catch(err => console.log (err))
-  //         // .finally(() => {
-  //         //     setLoading(false)
-  //         // })
-  // }, [detailId])
+  useEffect(() => {
+    if(detailId !== undefined) {
+      const filtrado = objects.find((e) => e.id === parseInt(detailId))
+      if(filtrado !== undefined){
+        setDetailObject(filtrado)
+      }
+    }
+  }, [detailId])
 
 
   return (
     <>
-     {/* <DetailItemView detailObject={detailObject} /> */}
-     {detailObject}
+     <DetailItemView detailObject={detailObject} />
     </>
   )
 }

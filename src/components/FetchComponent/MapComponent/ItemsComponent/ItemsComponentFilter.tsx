@@ -27,7 +27,7 @@ const ItemsComponentFilter = ({respuesta} : {respuesta: CallFetch}) => {
           </button>
           </Link>
           
-          <ButtonComponent />
+          {/* <ButtonComponent /> */}
           <Link to={`/detail/${respuesta.id}`}>
             <button>Ver detalle</button>
             </Link>
