@@ -1,22 +1,31 @@
-import React from 'react'
-import { CallFetch } from '../../../interfaces/CallFetch';
+import React, { useState, useEffect } from "react";
+import { CallFetch } from "../../../interfaces/CallFetch";
 
-type CallFetchCategory = "male" | "female";
+const DetailItemView = ({ detailObject }: { detailObject: CallFetch }) => {
+  const [loading, setLoading] = useState(false);
 
-const DetailItemView = ({detailObject}:{detailObject:CallFetch}) => {
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <>
-    <div key={detailObject.id}>
-    <h2>{detailObject.title}</h2>
-    <ul>
-      <li>{detailObject.price}</li>
-      <li>user id:{detailObject.userId}</li>
-    </ul>
-    </div>
-    
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <div key={detailObject.id}>
+          <h2>{detailObject.title}</h2>
+          <ul>
+            <li>{detailObject.price}</li>
+            <li>user id:{detailObject.userId}</li>
+          </ul>
+        </div>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default DetailItemView
+export default DetailItemView;
