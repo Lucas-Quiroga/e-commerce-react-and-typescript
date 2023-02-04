@@ -14,9 +14,10 @@ const DetailComponent = () => {
     title: "",
     category: "male"
   })
-  const [show, setShow] = useState(false);
+  
+  // const [show, setShow] = useState(false);
 
-  const {detailId}= useParams();
+  const {detailId} = useParams();
 
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const DetailComponent = () => {
         setDetailObject(filtrado)
       }
     }
-  }, [detailId])
+  }, [detailId, objects])
 
 
   return (

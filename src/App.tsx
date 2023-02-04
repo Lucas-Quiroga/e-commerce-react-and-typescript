@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 import Main from './components/FetchComponent/Main'
 import DetailComponent from './components/DetailComponent/DetailComponent'
 import CartProvider from './context/CartProvider'
-import CarouselView from './components/CarouselView/CarouselView'
+// import CarouselView from './components/CarouselView/CarouselView'
 import "./App.css"
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 		<CartProvider>
 			<Navbar />
 			<Routes>
-				<Route path='/'element={<CarouselView />}/>
+				{/* <Route path='/'element={<CarouselView />}/> */}
 				<Route path='/carrito' element={<Carrito />} />
 				<Route path='/remeras' element={<Remeras />} />
 				<Route path='/remeras/:id' element={<Remera />} />
