@@ -23,6 +23,7 @@ const Login = () => {
   };
 
   const [login, setLogin] = useState(comprobarSesion());
+  const [cambioDeComponente, setCambioDeComponente] = useState(false);
   const [datos, setDatos] = useState<usuarioDatos>({
     nombre: "",
     apellido: "",
@@ -57,9 +58,13 @@ const Login = () => {
     console.log("enviando datos..." + datos.nombre + " " + datos.apellido);
   };
 
+  const registerComponent = () => {
+    setCambioDeComponente(true);
+  };
+
   return (
     <>
-      {login === false ? (
+      {cambioDeComponente === false ? (
         <div>
           <h1>Formulario</h1>
           <form className="row" onSubmit={enviarDatos}>
@@ -85,6 +90,7 @@ const Login = () => {
               Enviar
             </button>
           </form>
+          <button onClick={registerComponent}>Registrar</button>
         </div>
       ) : (
         <Register />
