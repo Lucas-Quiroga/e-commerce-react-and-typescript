@@ -17,7 +17,6 @@ interface CallFetch {
 }
 
 const CatalogueFilter = () => {
-	// const [value, setValue] = useState(INTIAL_STATE);
 	const [male, setMale] = useState(INTIAL_STATE['checked'])
 	const [female, setFemale] = useState(INTIAL_STATE['checked'])
 
@@ -57,7 +56,7 @@ const CatalogueFilter = () => {
 			</form>
 			<div className='Genero'>
 				<h3>Gender</h3>
-				<NavLink to='/category/male'>
+				<NavLink to='/category/male' style={{textDecoration: 'none', color: 'black'}}>
 					<input
 						value='male'
 						type='checkbox'
@@ -68,7 +67,7 @@ const CatalogueFilter = () => {
 					Male
 				</NavLink> <br/>
 				{/* los values tendrian que ir sin las comillas */}
-				<NavLink to='/category/female'>
+				<NavLink to='/category/female' style={{textDecoration: 'none', color: 'black'}}>
 					<input
 						value='Female'
 						type='checkbox'

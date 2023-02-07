@@ -34,7 +34,7 @@ function Carrito() {
         </ul>
         
       ))}
-      <h2 style={{color: "white"}}>Total a pagar: ${totalCart}</h2>
+      <h2 style={{color: "black", textAlign: 'center'}}>Total a pagar: ${Math.round(totalCart)}</h2>
     </div>
     </div>
   )
