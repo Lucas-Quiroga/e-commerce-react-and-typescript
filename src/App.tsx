@@ -9,6 +9,7 @@ import DetailComponent from './components/DetailComponent/DetailComponent'
 import CartProvider from './context/CartProvider'
 // import CarouselView from './components/CarouselView/CarouselView'
 import "./App.css"
+import Login from './components/Login/Login'
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				<Route path='/remeras/new' element={<NuevaRemera />} />
 				<Route path='/category' element={<Main />} />
 				<Route path='/category/:categoryId' element={<Main />} />
+				<Route path='/login' element={<Login />} />
 				<Route path='/detail/:detailId' element={<DetailComponent />} />
 			</Routes>
 

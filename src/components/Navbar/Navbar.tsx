@@ -18,6 +18,9 @@ const Navbar = () => {
 					<li>
 						<Link to='/category'>Categorias</Link>
 					</li>
+					<li>
+						<Link to='/login'>Iniciar Sesión</Link>
+					</li>
 					{/* <li>
 						<Link to="./detail">Detalle</Link>
 					</li> */}
