@@ -14,7 +14,7 @@ function Carrito() {
   const [total, setTotal] = React.useState<useStatential>()
 
   if (itemsCart.length === 0) {
-    return <h2>no hay elementos</h2>
+    return <h2 style={{textAlign: 'center'}}>No hay elementos</h2>
   }
   
   

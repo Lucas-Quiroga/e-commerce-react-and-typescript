@@ -1,16 +1,26 @@
-.navbar{
-    height: 3rem;
+.navbar {
+	height: 3rem;
 }
 
-.ul_navbar{
-display: flex;
-justify-content: flex-end;
-gap: 2rem;
-padding-right: 2rem;
-margin: 0;
-padding-top: 0.6rem;
+.ul_navbar {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	padding-right: 2rem;
+	margin: 0;
+	padding-top: 0.6rem;
 }
 
-.ul_navbar li{
+li {
+	list-style: none;
+}
+
+li > * {
+	color: #202020;
+    font-weight: 600;
     text-decoration: none;
+}
+
+li:hover{
+    transform: scale(1.2)
 }

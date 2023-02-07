@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./assets/pexels-tembela-bohle-1884584.jpg");
-  background-size: cover;
+  /* background-image: url("./assets/pexels-tembela-bohle-1884584.jpg"); */
+  /* background-size: cover; */
 }
 
 code {

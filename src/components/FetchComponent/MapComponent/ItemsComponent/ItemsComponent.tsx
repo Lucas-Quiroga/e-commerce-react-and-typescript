@@ -25,7 +25,7 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
 
 	return (
 		<div>
-			<h1>TITULO: {respuesta.title}</h1>
+			<h3>Nombre: {respuesta.title}</h3>
 			<p>ID: {respuesta.id}</p>
 			<span>USER ID: {respuesta.userId}</span>
 			<br />
