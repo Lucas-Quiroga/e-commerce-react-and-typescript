@@ -1,16 +1,6 @@
-import React, { useState, useEffect, MouseEvent } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-
-type valueReferences = 'male' | 'female'
-
-interface CallFetch {
-	id: number
-	userId: number
-	price: number
-	title: string
-	category: string
-}
+import type {CallFetchCategory} from '../../interfaces/CallFetch'
 
 const CatalogueFilter = () => {
 	const [male, setMale] = useState(false)
@@ -18,7 +8,7 @@ const CatalogueFilter = () => {
 
 	console.log(female, male)
 
-	const handleValue = (data: valueReferences) => {
+	const handleValue = (data: CallFetchCategory) => {
 		if (data === 'male') {
 			setMale(!male)
 		}
