@@ -45,7 +45,7 @@ const Register = () => {
             <input
               id="text"
               type="text"
-              name="text"
+              name="nameUser"
               onChange={(e) => setNameUser(e.target.value)}
               required
             />

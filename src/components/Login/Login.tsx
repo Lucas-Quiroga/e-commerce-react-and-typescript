@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import Register from "../Register/Register";
 
 interface usuarioDatos {
-  nombre: string;
-  apellido: string;
+  nameUser: string;
+  passwordUser: string;
 }
 
-// type login = true | false;
+type login = true | false;
 
-// interface logear {
-//   comprobarSesion(): login;
-// }
+interface logear {
+  comprobarSesion(): login;
+}
 
 const Login = () => {
   const comprobarSesion = () => {
-    let sesion = localStorage.getItem("loginUsuario");
+    let sesion = localStorage.getItem("miLogin");
     if (sesion === `${true}`) {
       return JSON.parse(sesion); //true
     } else {
@@ -22,11 +22,14 @@ const Login = () => {
     }
   };
 
+  // let nuevoRegistro = localStorage.getItem("register");
+  // console.log(nuevoRegistro);
+
   const [login, setLogin] = useState(comprobarSesion());
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
   const [datos, setDatos] = useState<usuarioDatos>({
-    nombre: "",
-    apellido: "",
+    nameUser: "",
+    passwordUser: "",
   });
 
   const handleInputChange = (event: any) => {
@@ -39,23 +42,33 @@ const Login = () => {
   const enviarDatos = (event: any) => {
     event.preventDefault();
 
-    if (datos.nombre.length === 0 || datos.apellido.length === 0) {
-      alert("complete los datos por favor");
-    } else {
-      if (datos.nombre === "admin" && datos.apellido === "123") {
-        localStorage.setItem("loginUsuario", `${true}`);
-        localStorage.setItem("usuario", datos.nombre);
-      } else {
-        setLogin(false);
-        alert("error");
-        setDatos({
-          nombre: "",
-          apellido: "",
-        });
-      }
-    }
+    let UserValidation = localStorage.getItem("register");
 
-    console.log("enviando datos..." + datos.nombre + " " + datos.apellido);
+    try {
+      if (datos.nameUser.length === 0 || datos.passwordUser.length === 0) {
+        alert("complete los datos");
+      } else {
+        if (datos.nameUser && datos.passwordUser === UserValidation) {
+          localStorage.setItem("loginUsuario", `${true}`);
+          localStorage.setItem("usuario", datos.nameUser);
+          alert("usuario ingresado");
+        } else {
+          setLogin(false);
+          alert("error");
+          setDatos({
+            nameUser: "",
+            passwordUser: "",
+          });
+        }
+      }
+      console.log(
+        "enviando datos..." + datos.nameUser + " " + datos.passwordUser
+      );
+    } catch (error) {
+      console.error(error);
+      // Expected output: ReferenceError: nonExistentFunction is not defined
+      // (Note: the exact output may be browser-dependent)
+    }
   };
 
   const registerComponent = () => {
@@ -66,29 +79,25 @@ const Login = () => {
     <>
       {cambioDeComponente === false ? (
         <div>
-          <h1>Formulario</h1>
-          <form className="row" onSubmit={enviarDatos}>
-            <div className="col-md-3">
+          <h1>Inciar sesion</h1>
+          <form onSubmit={enviarDatos}>
+            <div>
               <input
                 type="text"
                 placeholder="Nombre"
-                className="form-control"
                 onChange={handleInputChange}
-                name="nombre"
+                name="nameUser"
               ></input>
             </div>
-            <div className="col-md-3">
+            <div>
               <input
-                type="text"
+                type="password"
                 placeholder="Apellido"
-                className="form-control"
                 onChange={handleInputChange}
-                name="apellido"
+                name="passwordUser"
               ></input>
             </div>
-            <button type="submit" className="btn btn-primary">
-              Enviar
-            </button>
+            <button type="submit">Logear</button>
           </form>
           <button onClick={registerComponent}>Registrar</button>
         </div>
