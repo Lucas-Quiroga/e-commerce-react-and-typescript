@@ -14,7 +14,7 @@ function Carrito() {
   const [total, setTotal] = React.useState<useStatential>()
 
   if (itemsCart.length === 0) {
-    return <h2>no hay elementos</h2>
+    return <h2 style={{textAlign: 'center'}}>No hay elementos</h2>
   }
   
   
@@ -34,7 +34,7 @@ function Carrito() {
         </ul>
         
       ))}
-      <h2 style={{color: "white"}}>Total a pagar: ${totalCart}</h2>
+      <h2 style={{color: "black", textAlign: 'center'}}>Total a pagar: ${Math.round(totalCart)}</h2>
     </div>
     </div>
   )

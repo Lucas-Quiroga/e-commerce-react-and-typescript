@@ -1,4 +1,4 @@
-type CallFetchCategory = "male" | "female";
+export type CallFetchCategory = "male" | "female";
 
 export interface CallFetch{
   id: number,
