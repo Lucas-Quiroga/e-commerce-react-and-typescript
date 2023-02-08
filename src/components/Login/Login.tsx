@@ -65,9 +65,9 @@ const Login = () => {
   return (
     <>
       {cambioDeComponente === false ? (
-        <div>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <h1>Formulario</h1>
-          <form className="row" onSubmit={enviarDatos}>
+          <form className="row" onSubmit={enviarDatos} style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div className="col-md-3">
               <input
                 type="text"
@@ -84,13 +84,15 @@ const Login = () => {
                 className="form-control"
                 onChange={handleInputChange}
                 name="apellido"
+                
               ></input>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" style={{width: '100%'}}>
               Enviar
             </button>
+            <button onClick={registerComponent} style={{width: '100%'}}>Registrar</button>
           </form>
-          <button onClick={registerComponent}>Registrar</button>
+          
         </div>
       ) : (
         <Register />
