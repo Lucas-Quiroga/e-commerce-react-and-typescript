@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Register from "../Register/Register";
 
 interface usuarioDatos {
-  nameUser: string;
+  nameUser: string | null;
   passwordUser: string;
 }
 
@@ -27,10 +27,13 @@ const Login = () => {
 
   const [login, setLogin] = useState(comprobarSesion());
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
+  const [usuario] = useState(localStorage.getItem("register"));
   const [datos, setDatos] = useState<usuarioDatos>({
     nameUser: "",
     passwordUser: "",
   });
+  const [nameusu, setNameusu] = useState("");
+  const [passwordusu, setPasswordusu] = useState("");
 
   const handleInputChange = (event: any) => {
     setDatos({
@@ -44,31 +47,40 @@ const Login = () => {
 
     let UserValidation = localStorage.getItem("register");
 
-    try {
-      if (datos.nameUser.length === 0 || datos.passwordUser.length === 0) {
-        alert("complete los datos");
+    // let usuarioNameInputValidation = (
+    //   document.getElementById("nameUser") as HTMLInputElement
+    // ).value;
+    // let usuarioPasswordInputValidation = (
+    //   document.getElementById("namepassword") as HTMLInputElement
+    // ).value;
+
+    let usuarioNameInputValidation = nameusu;
+    let usuarioPasswordInputValidation = passwordusu;
+
+    if (
+      usuarioNameInputValidation.length === 0 ||
+      (usuarioNameInputValidation.length === null &&
+        usuarioPasswordInputValidation.length === 0) ||
+      usuarioPasswordInputValidation.length === null
+    ) {
+      alert("complete los datos");
+    } else {
+      if (datos.nameUser && datos.passwordUser === UserValidation) {
+        localStorage.setItem("loginUsuario", `${true}`);
+        localStorage.setItem("usuario", datos.nameUser);
+        alert("usuario ingresado");
       } else {
-        if (datos.nameUser && datos.passwordUser === UserValidation) {
-          localStorage.setItem("loginUsuario", `${true}`);
-          localStorage.setItem("usuario", datos.nameUser);
-          alert("usuario ingresado");
-        } else {
-          setLogin(false);
-          alert("error");
-          setDatos({
-            nameUser: "",
-            passwordUser: "",
-          });
-        }
+        setLogin(false);
+        alert("error");
+        setDatos({
+          nameUser: "",
+          passwordUser: "",
+        });
       }
-      console.log(
-        "enviando datos..." + datos.nameUser + " " + datos.passwordUser
-      );
-    } catch (error) {
-      console.error(error);
-      // Expected output: ReferenceError: nonExistentFunction is not defined
-      // (Note: the exact output may be browser-dependent)
     }
+    console.log(
+      "enviando datos..." + datos.nameUser + " " + datos.passwordUser
+    );
   };
 
   const registerComponent = () => {
@@ -85,16 +97,18 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Nombre"
-                onChange={handleInputChange}
+                onChange={(e) => setNameusu(e.target.value)}
                 name="nameUser"
+                id="nameusu"
               ></input>
             </div>
             <div>
               <input
                 type="password"
                 placeholder="Apellido"
-                onChange={handleInputChange}
+                onChange={(e) => setPasswordusu(e.target.value)}
                 name="passwordUser"
+                id="namepassword"
               ></input>
             </div>
             <button type="submit">Logear</button>
