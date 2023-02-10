@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Login from "../Login/Login";
 
+interface usuarioDatos {
+  nameUser: string;
+  passwordUser: string | number;
+}
+
 const Register = () => {
   const getRegister = () => {
     let datos = localStorage.getItem("register");
@@ -12,8 +17,9 @@ const Register = () => {
   };
 
   const [register, setRegister] = useState(getRegister());
-  const [nameUser, setNameUser] = useState("");
-  const [passwordUser, setPasswordUser] = useState("");
+  const [nameUser, setNameUser] = useState<usuarioDatos["nameUser"]>("");
+  const [passwordUser, setPasswordUser] =
+    useState<usuarioDatos["passwordUser"]>("");
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
 
   const enviarDatos = (e: any) => {

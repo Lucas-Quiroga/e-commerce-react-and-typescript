@@ -1,16 +1,22 @@
 import React, { useState } from "react";
+import { json } from "stream/consumers";
 import Register from "../Register/Register";
-
-interface usuarioDatos {
-  nameUser: string | null;
-  passwordUser: string;
-}
 
 type login = true | false;
 
 interface logear {
   comprobarSesion(): login;
 }
+
+interface usuarioDatos {
+  nameUser: string;
+  passwordUser: string | number;
+}
+
+const INITIAL_STATE = {
+  nameUser: "",
+  passwordUser: "",
+};
 
 const Login = () => {
   const comprobarSesion = () => {
@@ -22,18 +28,18 @@ const Login = () => {
     }
   };
 
-  // let nuevoRegistro = localStorage.getItem("register");
-  // console.log(nuevoRegistro);
-
+  //ESTADO DONDE SE GUARDAN LOS DATOS DE LOS INPUTS
+  const [datos, setDatos] = useState<usuarioDatos>(INITIAL_STATE);
+  //ESTADO QUE COMPRUEBA EL INICIO DE SESIÓN
   const [login, setLogin] = useState(comprobarSesion());
+  //ESTADO PARA MOSTRAR/DEMOSTRAR UN COMPONENTE
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
-  const [usuario] = useState(localStorage.getItem("register"));
-  const [datos, setDatos] = useState<usuarioDatos>({
-    nameUser: "",
-    passwordUser: "",
-  });
-  const [nameusu, setNameusu] = useState("");
-  const [passwordusu, setPasswordusu] = useState("");
+  //ESTADO QUE ALMACENA EL USUARIO REGISTRADO
+  const [usuario] = useState<usuarioDatos>(
+    JSON.parse(localStorage.getItem("register"))
+  );
+
+  console.log(usuario.nameUser, usuario.passwordUser);
 
   const handleInputChange = (event: any) => {
     setDatos({
@@ -45,39 +51,12 @@ const Login = () => {
   const enviarDatos = (event: any) => {
     event.preventDefault();
 
-    let UserValidation = JSON.stringify(localStorage.getItem("register"));
-    // let UserValidation = JSON.parse(localStorage.getItem("register"));
-
-    // en algún momento más tarde
-
-    //areglar esto
-    let userprueba = JSON.parse(UserValidation);
-    const { nameUser } = userprueba;
-
-    // let usuarioNameInputValidation = (
-    //   document.getElementById("nameUser") as HTMLInputElement
-    // ).value;
-    // let usuarioPasswordInputValidation = (
-    //   document.getElementById("namepassword") as HTMLInputElement
-    // ).value;
-
-    let usuarioNameInputValidation = nameusu;
-    let usuarioPasswordInputValidation = passwordusu;
-
-    if (
-      usuarioNameInputValidation.length === 0 ||
-      (usuarioNameInputValidation.length === null &&
-        usuarioPasswordInputValidation.length === 0) ||
-      usuarioPasswordInputValidation.length === null
-    ) {
+    if (datos.nameUser === "" || (null && datos.passwordUser === "") || null) {
       alert("complete los datos");
     } else {
-      if (
-        usuarioNameInputValidation &&
-        usuarioPasswordInputValidation === UserValidation
-      ) {
+      if (datos.nameUser === usuario.nameUser) {
         localStorage.setItem("loginUsuario", `${true}`);
-        localStorage.setItem("usuario", usuarioNameInputValidation);
+        localStorage.setItem("usuario", "");
         alert("usuario ingresado");
       } else {
         setLogin(false);
@@ -88,7 +67,7 @@ const Login = () => {
         });
       }
     }
-    console.log("enviando datos..." + userprueba + " " + nameUser);
+    console.log("enviando datos...");
   };
 
   const registerComponent = () => {
@@ -105,7 +84,7 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Nombre"
-                onChange={(e) => setNameusu(e.target.value)}
+                onChange={handleInputChange}
                 name="nameUser"
                 id="nameusu"
               ></input>
@@ -113,8 +92,8 @@ const Login = () => {
             <div>
               <input
                 type="password"
-                placeholder="Apellido"
-                onChange={(e) => setPasswordusu(e.target.value)}
+                placeholder="Password"
+                onChange={handleInputChange}
                 name="passwordUser"
                 id="namepassword"
               ></input>
@@ -131,3 +110,29 @@ const Login = () => {
 };
 
 export default Login;
+
+//reusu o retoque de ideas
+
+// let nuevoRegistro = localStorage.getItem("register");
+// console.log(nuevoRegistro);
+
+//--------------------------------------------------------//
+
+// let UserValidation = JSON.parse(localStorage.getItem("register"));
+
+//--------------------------------------------------------//
+
+// let usuarioNameInputValidation = (
+//   document.getElementById("nameUser") as HTMLInputElement
+// ).value;
+// let usuarioPasswordInputValidation = (
+//   document.getElementById("namepassword") as HTMLInputElement
+// ).value;
+
+//--------------------------------------------------------//
+
+// const [nameusu, setNameusu] = useState("");
+// const [passwordusu, setPasswordusu] = useState("");
+
+// let usuarioNameInputValidation = nameusu;
+// let usuarioPasswordInputValidation = passwordusu;
