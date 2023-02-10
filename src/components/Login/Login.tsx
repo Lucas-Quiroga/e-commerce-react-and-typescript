@@ -45,7 +45,14 @@ const Login = () => {
   const enviarDatos = (event: any) => {
     event.preventDefault();
 
-    let UserValidation = localStorage.getItem("register");
+    let UserValidation = JSON.stringify(localStorage.getItem("register"));
+    // let UserValidation = JSON.parse(localStorage.getItem("register"));
+
+    // en algún momento más tarde
+
+    //areglar esto
+    let userprueba = JSON.parse(UserValidation);
+    const { nameUser } = userprueba;
 
     // let usuarioNameInputValidation = (
     //   document.getElementById("nameUser") as HTMLInputElement
@@ -65,9 +72,12 @@ const Login = () => {
     ) {
       alert("complete los datos");
     } else {
-      if (datos.nameUser && datos.passwordUser === UserValidation) {
+      if (
+        usuarioNameInputValidation &&
+        usuarioPasswordInputValidation === UserValidation
+      ) {
         localStorage.setItem("loginUsuario", `${true}`);
-        localStorage.setItem("usuario", datos.nameUser);
+        localStorage.setItem("usuario", usuarioNameInputValidation);
         alert("usuario ingresado");
       } else {
         setLogin(false);
@@ -78,9 +88,7 @@ const Login = () => {
         });
       }
     }
-    console.log(
-      "enviando datos..." + datos.nameUser + " " + datos.passwordUser
-    );
+    console.log("enviando datos..." + userprueba + " " + nameUser);
   };
 
   const registerComponent = () => {
