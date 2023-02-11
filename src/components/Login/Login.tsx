@@ -35,11 +35,17 @@ const Login = () => {
   //ESTADO PARA MOSTRAR/DEMOSTRAR UN COMPONENTE
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
   //ESTADO QUE ALMACENA EL USUARIO REGISTRADO
-  const [usuario] = useState<usuarioDatos>(
-    JSON.parse(localStorage.getItem("register"))
-  );
+  // const [usuario] = useState<usuarioDatos>(
+  //   JSON.parse(localStorage.getItem("register"))
+  // );
+  // const [nameRegistradoLocal] = useState<usuarioDatos["nameUser"]>(localStorage.getItem("nameRegister"))
+  const getName = JSON.stringify(localStorage.getItem("nameRegister"));
+  const getPassword = JSON.stringify(localStorage.getItem("passwordRegister"));
+  // console.log(usuario.nameUser, usuario.passwordUser);
+  // console.log(nameRegistradoLocal);
 
-  console.log(usuario.nameUser, usuario.passwordUser);
+  console.log(`"${datos.nameUser}"`);
+  console.log(getName);
 
   const handleInputChange = (event: any) => {
     setDatos({
@@ -51,10 +57,11 @@ const Login = () => {
   const enviarDatos = (event: any) => {
     event.preventDefault();
 
-    if (datos.nameUser === "" || (null && datos.passwordUser === "") || null) {
+    if (`"${datos.nameUser}\"` === getName) {
       alert("complete los datos");
     } else {
-      if (datos.nameUser === usuario.nameUser) {
+      if (datos.nameUser === getName || datos.passwordUser === getPassword) {
+        alert("si, es igual");
         localStorage.setItem("loginUsuario", `${true}`);
         localStorage.setItem("usuario", "");
         alert("usuario ingresado");
