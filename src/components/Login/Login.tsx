@@ -35,17 +35,23 @@ const Login = () => {
   //ESTADO PARA MOSTRAR/DEMOSTRAR UN COMPONENTE
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
   //ESTADO QUE ALMACENA EL USUARIO REGISTRADO
-  // const [usuario] = useState<usuarioDatos>(
-  //   JSON.parse(localStorage.getItem("register"))
-  // );
+  const [usuarioNameRegister] = useState(localStorage.getItem("nameRegister"));
+  const [usuarioPasswordRegister] = useState(
+    localStorage.getItem("passwordRegister")
+  );
+
+  // console.log(usuarioPasswordRegister);
+  // console.log(datos.passwordUser);
+
+  // console.log("hola soy " + usuario);
   // const [nameRegistradoLocal] = useState<usuarioDatos["nameUser"]>(localStorage.getItem("nameRegister"))
-  const getName = JSON.stringify(localStorage.getItem("nameRegister"));
+  const getName = localStorage.getItem("nameRegister");
   const getPassword = JSON.stringify(localStorage.getItem("passwordRegister"));
   // console.log(usuario.nameUser, usuario.passwordUser);
   // console.log(nameRegistradoLocal);
 
-  console.log(`"${datos.nameUser}"`);
-  console.log(getName);
+  // console.log("hola soy " + getName);
+  // console.log("hola mi contraseña es " + getPassword);
 
   const handleInputChange = (event: any) => {
     setDatos({
@@ -53,29 +59,34 @@ const Login = () => {
       [event.target.name]: event.target.value,
     });
   };
+  // console.log(datos.nameUser);
 
   const enviarDatos = (event: any) => {
     event.preventDefault();
 
-    if (`"${datos.nameUser}\"` === getName) {
-      alert("complete los datos");
+    // if (datos.nameUser === "") {
+    //   alert("complete los datos");
+    // } else {
+    // console.log(ndatos.nameUser);
+
+    if (
+      `"${datos.nameUser}"` === usuarioNameRegister &&
+      `"${datos.passwordUser}"` === usuarioPasswordRegister
+    ) {
+      alert("si, es igual");
+      localStorage.setItem("loginUsuario", `${true}`);
+      localStorage.setItem("usuario", "");
+      alert("usuario ingresado");
     } else {
-      if (datos.nameUser === getName || datos.passwordUser === getPassword) {
-        alert("si, es igual");
-        localStorage.setItem("loginUsuario", `${true}`);
-        localStorage.setItem("usuario", "");
-        alert("usuario ingresado");
-      } else {
-        setLogin(false);
-        alert("error");
-        setDatos({
-          nameUser: "",
-          passwordUser: "",
-        });
-      }
+      setLogin(false);
+      alert("error");
+      setDatos({
+        nameUser: "",
+        passwordUser: "",
+      });
     }
-    console.log("enviando datos...");
   };
+  // console.log("enviando datos...");
 
   const registerComponent = () => {
     setCambioDeComponente(true);
