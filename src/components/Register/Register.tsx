@@ -36,7 +36,7 @@ const Register = () => {
 
   //cuando haya cambios en los registros los guarda en el localStorage (pero no es permanente)
   useEffect(() => {
-    // localStorage.setItem("register", JSON.stringify(register));
+    localStorage.setItem("register", JSON.stringify(register));
     localStorage.setItem("nameRegister", JSON.stringify(nameUser));
     localStorage.setItem("passwordRegister", JSON.stringify(passwordUser));
   }, [register, nameUser, passwordUser]);
@@ -61,7 +61,9 @@ const Register = () => {
             <label>Enter your password:</label>
             <input
               type="password"
-              name="password"
+              placeholder="Password"
+              name="passwordUser"
+              id="namepassword"
               onChange={(e) => setPasswordUser(e.target.value)}
               required
             />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { json } from "stream/consumers";
 import Register from "../Register/Register";
+import Home from "../../pages/Home";
 
 type login = true | false;
 
@@ -13,6 +13,11 @@ interface usuarioDatos {
   passwordUser: string | number;
 }
 
+type objetoRegistrado = {
+  name: string;
+  password: string | number;
+};
+
 const INITIAL_STATE = {
   nameUser: "",
   passwordUser: "",
@@ -20,13 +25,23 @@ const INITIAL_STATE = {
 
 const Login = () => {
   const comprobarSesion = () => {
-    let sesion = localStorage.getItem("miLogin");
-    if (sesion === `${true}`) {
+    let sesion = localStorage.getItem("login");
+    if (sesion === "true") {
       return JSON.parse(sesion); //true
+      alert("si");
     } else {
       return false;
     }
   };
+
+  // function agarrandoDatos() {
+  //   let usuarioReg = localStorage.getItem("register");
+  //   if (usuarioReg) {
+  //     return JSON.parse(usuarioReg);
+  //   } else {
+  //     return [];
+  //   }
+  // }
 
   //ESTADO DONDE SE GUARDAN LOS DATOS DE LOS INPUTS
   const [datos, setDatos] = useState<usuarioDatos>(INITIAL_STATE);
@@ -35,23 +50,14 @@ const Login = () => {
   //ESTADO PARA MOSTRAR/DEMOSTRAR UN COMPONENTE
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
   //ESTADO QUE ALMACENA EL USUARIO REGISTRADO
+  // const [x] = useState<usuarioDatos>(agarrandoDatos());
   const [usuarioNameRegister] = useState(localStorage.getItem("nameRegister"));
   const [usuarioPasswordRegister] = useState(
     localStorage.getItem("passwordRegister")
   );
 
-  // console.log(usuarioPasswordRegister);
-  // console.log(datos.passwordUser);
-
-  // console.log("hola soy " + usuario);
-  // const [nameRegistradoLocal] = useState<usuarioDatos["nameUser"]>(localStorage.getItem("nameRegister"))
   const getName = localStorage.getItem("nameRegister");
   const getPassword = JSON.stringify(localStorage.getItem("passwordRegister"));
-  // console.log(usuario.nameUser, usuario.passwordUser);
-  // console.log(nameRegistradoLocal);
-
-  // console.log("hola soy " + getName);
-  // console.log("hola mi contraseña es " + getPassword);
 
   const handleInputChange = (event: any) => {
     setDatos({
@@ -59,34 +65,31 @@ const Login = () => {
       [event.target.name]: event.target.value,
     });
   };
-  // console.log(datos.nameUser);
 
   const enviarDatos = (event: any) => {
     event.preventDefault();
-
-    // if (datos.nameUser === "") {
-    //   alert("complete los datos");
-    // } else {
-    // console.log(ndatos.nameUser);
-
-    if (
-      `"${datos.nameUser}"` === usuarioNameRegister &&
-      `"${datos.passwordUser}"` === usuarioPasswordRegister
-    ) {
-      alert("si, es igual");
-      localStorage.setItem("loginUsuario", `${true}`);
-      localStorage.setItem("usuario", "");
-      alert("usuario ingresado");
+    if (datos.nameUser === "" || datos.passwordUser === "") {
+      return alert("ingrese los datos");
     } else {
-      setLogin(false);
-      alert("error");
-      setDatos({
-        nameUser: "",
-        passwordUser: "",
-      });
+      if (
+        `"${datos.nameUser}"` === usuarioNameRegister &&
+        `"${datos.passwordUser}"` === usuarioPasswordRegister
+      ) {
+        setLogin(true);
+        alert("si, es igual");
+        localStorage.setItem("login", "true");
+        localStorage.setItem("usuario", "");
+        alert("usuario ingresado");
+      } else {
+        setLogin(false);
+        alert("error");
+        setDatos({
+          nameUser: "",
+          passwordUser: "",
+        });
+      }
     }
   };
-  // console.log("enviando datos...");
 
   const registerComponent = () => {
     setCambioDeComponente(true);
@@ -123,6 +126,7 @@ const Login = () => {
       ) : (
         <Register />
       )}
+      {login && <Home />}
     </>
   );
 };
