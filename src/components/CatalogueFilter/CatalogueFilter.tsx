@@ -33,6 +33,7 @@ const CatalogueFilter = () => {
 
 	return (
 		<div style={{ padding: 15, minWidth: 100 }}>
+			
 			<form>
 				<h3>Filtros</h3>
 				<input type='checkbox' id='buzos' />
@@ -48,6 +49,7 @@ const CatalogueFilter = () => {
 				<label htmlFor='carteras'>Carteras</label>
 				<br />
 			</form>
+
 			<div>
 				<h3>Gender</h3>
 				<NavLink
@@ -83,6 +85,7 @@ const CatalogueFilter = () => {
 					Female
 				</NavLink>
 			</div>
+			
 		</div>
 	)
 }

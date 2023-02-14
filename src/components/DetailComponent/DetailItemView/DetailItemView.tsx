@@ -14,9 +14,9 @@ const DetailItemView = ({ detailObject }: { detailObject: CallFetch }) => {
   return (
     <>
       {loading ? (
-        <h2>Loading...</h2>
+        <h2 style={{textAlign: 'center'}}>Loading...</h2>
       ) : (
-        <div key={detailObject.id}>
+        <div key={detailObject.id} style={{display: 'flex', flexDirection: 'column', justifyItems: 'center', alignItems: 'center'}}>
           <h2>{detailObject.title}</h2>
           <ul>
             <li>{detailObject.price}</li>

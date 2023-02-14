@@ -15,7 +15,7 @@ const Navbar = () => {
 				<li className='sections'>
 					<Link to='/category'>Categorias</Link>
 				</li>
-					<li>
+					<li className='sections'>
 						<Link to='/login'>Iniciar Sesión</Link>
 					</li>
 			</ul>
