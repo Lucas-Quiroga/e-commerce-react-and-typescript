@@ -37,10 +37,10 @@ const Register = () => {
   //cuando haya cambios en los registros los guarda en el localStorage (pero no es permanente)
   useEffect(() => {
     localStorage.setItem("register", JSON.stringify(register));
-    localStorage.setItem("nameRegister", JSON.stringify(nameUser));
-    localStorage.setItem("passwordRegister", JSON.stringify(passwordUser));
-  }, [register, nameUser, passwordUser]);
-
+    // localStorage.setItem("nameRegister", JSON.stringify(nameUser));
+    // localStorage.setItem("passwordRegister", JSON.stringify(passwordUser));
+  }, [register]);
+  // nameUser, passwordUser
   console.log(register);
 
   return (

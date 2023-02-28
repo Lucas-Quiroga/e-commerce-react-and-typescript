@@ -66,29 +66,31 @@ const Login = () => {
     });
   };
 
-  const enviarDatos = (event: any) => {
+  const enviarDatos = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (datos.nameUser === "" || datos.passwordUser === "") {
-      return alert("ingrese los datos");
-    } else {
-      if (
-        `"${datos.nameUser}"` === usuarioNameRegister &&
-        `"${datos.passwordUser}"` === usuarioPasswordRegister
-      ) {
-        setLogin(true);
-        alert("si, es igual");
-        localStorage.setItem("login", "true");
-        localStorage.setItem("usuario", "");
-        alert("usuario ingresado");
-      } else {
-        setLogin(false);
-        alert("error");
-        setDatos({
-          nameUser: "",
-          passwordUser: "",
-        });
-      }
+
+    const usuarioRegistrado = localStorage.getItem("register");
+    const usuarios: usuarioDatos[] = usuarioRegistrado
+      ? JSON.parse(usuarioRegistrado)
+      : [];
+
+    const usuarioIngresado = usuarios.find(
+      (usuario) => usuario.nameUser === datos.nameUser
+    );
+
+    if (!usuarioIngresado) {
+      return alert("El usuario no está registrado");
     }
+
+    const { passwordUser } = usuarioIngresado;
+
+    if (passwordUser !== datos.passwordUser) {
+      return alert("La contraseña es incorrecta");
+    }
+
+    setLogin(true);
+    alert("¡Bienvenido!");
+    localStorage.setItem("login", "true");
   };
 
   const registerComponent = () => {
@@ -126,7 +128,6 @@ const Login = () => {
       ) : (
         <Register />
       )}
-      {login && <Home />}
     </>
   );
 };
