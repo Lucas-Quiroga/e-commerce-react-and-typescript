@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Register from "../Register/Register";
 import Home from "../../pages/Home";
+import Logout from "../Logout/Logout";
 
 type login = true | false;
 
 interface logear {
-  comprobarSesion(): login;
+  comprobarSesion(): boolean;
 }
 
 interface usuarioDatos {
@@ -13,51 +14,33 @@ interface usuarioDatos {
   passwordUser: string | number;
 }
 
-type objetoRegistrado = {
-  name: string;
-  password: string | number;
-};
-
 const INITIAL_STATE = {
   nameUser: "",
   passwordUser: "",
 };
 
 const Login = () => {
-  const comprobarSesion = () => {
+  const comprobarSesion = (): boolean => {
     let sesion = localStorage.getItem("login");
     if (sesion === "true") {
-      return JSON.parse(sesion); //true
-      alert("si");
+      alert("Sesión iniciada");
+      return JSON.parse(sesion);
     } else {
       return false;
     }
   };
 
-  // function agarrandoDatos() {
-  //   let usuarioReg = localStorage.getItem("register");
-  //   if (usuarioReg) {
-  //     return JSON.parse(usuarioReg);
-  //   } else {
-  //     return [];
-  //   }
-  // }
-
   //ESTADO DONDE SE GUARDAN LOS DATOS DE LOS INPUTS
   const [datos, setDatos] = useState<usuarioDatos>(INITIAL_STATE);
   //ESTADO QUE COMPRUEBA EL INICIO DE SESIÓN
-  const [login, setLogin] = useState(comprobarSesion());
+  const [login, setLogin] = useState<boolean>(comprobarSesion());
   //ESTADO PARA MOSTRAR/DEMOSTRAR UN COMPONENTE
   const [cambioDeComponente, setCambioDeComponente] = useState(false);
-  //ESTADO QUE ALMACENA EL USUARIO REGISTRADO
-  // const [x] = useState<usuarioDatos>(agarrandoDatos());
-  const [usuarioNameRegister] = useState(localStorage.getItem("nameRegister"));
-  const [usuarioPasswordRegister] = useState(
-    localStorage.getItem("passwordRegister")
-  );
 
-  const getName = localStorage.getItem("nameRegister");
-  const getPassword = JSON.stringify(localStorage.getItem("passwordRegister"));
+  const handleLogout = () => {
+    localStorage.removeItem("login");
+    setLogin(false);
+  };
 
   const handleInputChange = (event: any) => {
     setDatos({
@@ -99,34 +82,40 @@ const Login = () => {
 
   return (
     <>
-      {cambioDeComponente === false ? (
+      {login ? (
         <div>
-          <h1>Inciar sesion</h1>
-          <form onSubmit={enviarDatos}>
-            <div>
-              <input
-                type="text"
-                placeholder="Nombre"
-                onChange={handleInputChange}
-                name="nameUser"
-                id="nameusu"
-              ></input>
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="Password"
-                onChange={handleInputChange}
-                name="passwordUser"
-                id="namepassword"
-              ></input>
-            </div>
-            <button type="submit">Logear</button>
-          </form>
-          <button onClick={registerComponent}>Registrar</button>
+          <p>Bienvenido {datos.nameUser}</p>
+          <Logout setLogin={setLogin} />
         </div>
       ) : (
-        <Register />
+        <div>
+          <p>Inicie sesión para continuar</p>
+          <div>
+            <h1>Inciar sesion</h1>
+            <form onSubmit={enviarDatos}>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Nombre"
+                  onChange={handleInputChange}
+                  name="nameUser"
+                  id="nameusu"
+                ></input>
+              </div>
+              <div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  onChange={handleInputChange}
+                  name="passwordUser"
+                  id="namepassword"
+                ></input>
+              </div>
+              <button type="submit">Logear</button>
+            </form>
+            <button onClick={registerComponent}>Registrar</button>
+          </div>
+        </div>
       )}
     </>
   );
