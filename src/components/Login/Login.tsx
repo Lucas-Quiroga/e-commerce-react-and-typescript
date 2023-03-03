@@ -2,120 +2,75 @@ import React, { useState } from "react";
 import Register from "../Register/Register";
 import Home from "../../pages/Home";
 import Logout from "../Logout/Logout";
+import { Navigate } from "react-router-dom";
 
-type login = true | false;
-
-interface logear {
-  comprobarSesion(): boolean;
+interface User {
+  email: string;
+  password: string;
 }
-
-interface usuarioDatos {
-  nameUser: string;
-  passwordUser: string | number;
-}
-
-const INITIAL_STATE = {
-  nameUser: "",
-  passwordUser: "",
-};
 
 const Login = () => {
-  const comprobarSesion = (): boolean => {
-    let sesion = localStorage.getItem("login");
-    if (sesion === "true") {
-      alert("Sesión iniciada");
-      return JSON.parse(sesion);
-    } else {
-      return false;
-    }
+  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [showRegister, setShowRegister] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  //ESTADO DONDE SE GUARDAN LOS DATOS DE LOS INPUTS
-  const [datos, setDatos] = useState<usuarioDatos>(INITIAL_STATE);
-  //ESTADO QUE COMPRUEBA EL INICIO DE SESIÓN
-  const [login, setLogin] = useState<boolean>(comprobarSesion());
-  //ESTADO PARA MOSTRAR/DEMOSTRAR UN COMPONENTE
-  const [cambioDeComponente, setCambioDeComponente] = useState(false);
-
-  const handleLogout = () => {
-    localStorage.removeItem("login");
-    setLogin(false);
-  };
-
-  const handleInputChange = (event: any) => {
-    setDatos({
-      ...datos,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const enviarDatos = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const usuarioRegistrado = localStorage.getItem("register");
-    const usuarios: usuarioDatos[] = usuarioRegistrado
-      ? JSON.parse(usuarioRegistrado)
-      : [];
-
-    const usuarioIngresado = usuarios.find(
-      (usuario) => usuario.nameUser === datos.nameUser
-    );
-
-    if (!usuarioIngresado) {
-      return alert("El usuario no está registrado");
+    const storedUser = localStorage.getItem(user.email);
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if (user.password === parsedUser.password) {
+        alert("usuario ingresado");
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", "true");
+      } else {
+        alert("Incorrect password");
+      }
+    } else {
+      alert("User not found");
     }
-
-    const { passwordUser } = usuarioIngresado;
-
-    if (passwordUser !== datos.passwordUser) {
-      return alert("La contraseña es incorrecta");
-    }
-
-    setLogin(true);
-    alert("¡Bienvenido!");
-    localStorage.setItem("login", "true");
-  };
-
-  const registerComponent = () => {
-    setCambioDeComponente(true);
   };
 
   return (
     <>
-      {login ? (
-        <div>
-          <p>Bienvenido {datos.nameUser}</p>
-          <Logout setLogin={setLogin} />
-        </div>
+      {showRegister ? (
+        <Register />
       ) : (
-        <div>
-          <p>Inicie sesión para continuar</p>
-          <div>
-            <h1>Inciar sesion</h1>
-            <form onSubmit={enviarDatos}>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  onChange={handleInputChange}
-                  name="nameUser"
-                  id="nameusu"
-                ></input>
-              </div>
-              <div>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  onChange={handleInputChange}
-                  name="passwordUser"
-                  id="namepassword"
-                ></input>
-              </div>
-              <button type="submit">Logear</button>
-            </form>
-            <button onClick={registerComponent}>Registrar</button>
-          </div>
-        </div>
+        <>
+          <h2>Login</h2>
+          <form onSubmit={handleLogin}>
+            <label>
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleInputChange}
+                required
+                autoComplete="current-password"
+              />
+            </label>
+            <br />
+            <label>
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleInputChange}
+                required
+                autoComplete="current-password"
+              />
+            </label>
+            <br />
+            <button type="submit">Login</button>
+          </form>
+          <button onClick={() => setShowRegister(!false)}>Register</button>
+        </>
       )}
     </>
   );

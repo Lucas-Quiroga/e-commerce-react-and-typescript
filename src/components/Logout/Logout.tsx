@@ -1,15 +1,14 @@
 import React from "react";
 
-interface LogoutProps {
-  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
-}
+const Logout = () => {
+  const handleLogout = () => {};
 
-const Logout = ({ setLogin }: LogoutProps) => {
-  const handleLogout = () => {
-    localStorage.removeItem("login");
-    setLogin(false);
-  };
-  return <button onClick={handleLogout}>Cerrar sesión</button>;
+  return (
+    <div>
+      <p>You are logged in as</p>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  );
 };
 
 export default Logout;

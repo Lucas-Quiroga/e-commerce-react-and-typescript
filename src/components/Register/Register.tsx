@@ -1,79 +1,62 @@
 import React, { useState, useEffect } from "react";
 import Login from "../Login/Login";
 
-interface usuarioDatos {
-  nameUser: string;
-  passwordUser: string | number;
+interface User {
+  email: string;
+  password: string;
 }
 
 const Register = () => {
-  const getRegister = () => {
-    let datos = localStorage.getItem("register");
-    if (datos) {
-      return JSON.parse(datos);
-    } else {
-      return [];
-    }
+  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [showLogin, setShowLogin] = useState<boolean>(false);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  const [register, setRegister] = useState(getRegister());
-  const [nameUser, setNameUser] = useState<usuarioDatos["nameUser"]>("");
-  const [passwordUser, setPasswordUser] =
-    useState<usuarioDatos["passwordUser"]>("");
-  const [cambioDeComponente, setCambioDeComponente] = useState(false);
-
-  const enviarDatos = (e: any) => {
-    e.preventDefault();
-
-    let user = {
-      nameUser,
-      passwordUser,
-    };
-
-    setRegister([...register, user]);
-    setCambioDeComponente(true);
+  const handleRegister = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    localStorage.setItem(user.email, JSON.stringify(user));
+    alert("User registered");
+    setUser({ email: "", password: "" });
   };
-
-  //cuando haya cambios en los registros los guarda en el localStorage (pero no es permanente)
-  useEffect(() => {
-    localStorage.setItem("register", JSON.stringify(register));
-    // localStorage.setItem("nameRegister", JSON.stringify(nameUser));
-    // localStorage.setItem("passwordRegister", JSON.stringify(passwordUser));
-  }, [register]);
-  // nameUser, passwordUser
-  console.log(register);
 
   return (
-    <div className="register_container">
-      {cambioDeComponente === false ? (
-        <div>
-          <h1>Por favor registrate</h1>
-          <form onSubmit={enviarDatos}>
-            <label>Enter your username:</label>
-            <input
-              id="text"
-              type="text"
-              name="nameUser"
-              onChange={(e) => setNameUser(e.target.value)}
-              required
-            />
-            <br />
-            <label>Enter your password:</label>
-            <input
-              type="password"
-              placeholder="Password"
-              name="passwordUser"
-              id="namepassword"
-              onChange={(e) => setPasswordUser(e.target.value)}
-              required
-            />
-            <button>guardar datos</button>
-          </form>
-        </div>
-      ) : (
+    <>
+      {showLogin ? (
         <Login />
+      ) : (
+        <>
+          <h2>Register</h2>
+          <form onSubmit={handleRegister}>
+            <label>
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+            <br />
+            <label>
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+            <br />
+            <button type="submit">Register</button>
+          </form>
+          <button onClick={() => setShowLogin(!false)}>Login</button>
+        </>
       )}
-    </div>
+    </>
   );
 };
 
