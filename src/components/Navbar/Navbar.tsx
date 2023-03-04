@@ -15,21 +15,21 @@ const Navbar = () => {
     setIsLoggedIn(false);
   };
 
-  const renderAuthButton = () => {
-    if (isLoggedIn) {
-      return (
-        <li className="sections">
-          <button onClick={handleLogout}>Cerrar Sesión</button>
-        </li>
-      );
-    } else {
-      return (
-        <li className="sections">
-          <Link to="/inicioSesion">Iniciar Sesión</Link>
-        </li>
-      );
-    }
-  };
+  // const renderAuthButton = () => {
+  //   if (isLoggedIn) {
+  //     return (
+  //       <li className="sections">
+  //         <button onClick={handleLogout}>Cerrar Sesión</button>
+  //       </li>
+  //     );
+  //   } else {
+  //     return (
+  //       <li className="sections">
+  //         {isLoggedIn ? <Link to="/inicioSesion">Cerrar Sesión</Link> : <Link to="/inicioSesion">Iniciar Sesión</Link>}
+  //       </li>
+  //     );
+  //   }
+  // };
 
   return (
     <nav className="navbar">
@@ -43,7 +43,15 @@ const Navbar = () => {
         <li className="sections">
           <Link to="/category">Categorias</Link>
         </li>
-        <li>{renderAuthButton()}</li>
+        <li className="sections">
+          {isLoggedIn ? (
+            <Link to="/" onClick={handleLogout}>
+              Cerrar Sesión
+            </Link>
+          ) : (
+            <Link to="/inicioSesion">Iniciar Sesión</Link>
+          )}
+        </li>
       </ul>
     </nav>
   );

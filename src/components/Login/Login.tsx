@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Register from "../Register/Register";
 import Home from "../../pages/Home";
 import Logout from "../Logout/Logout";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import './Login.css'
 
 interface User {
   email: string;
@@ -40,14 +41,15 @@ const Login = () => {
       {showRegister ? (
         <Register />
       ) : (
-        <>
+        <div className="login">
           <h2>Login</h2>
-          <form onSubmit={handleLogin}>
+          <form style={{display: 'flex', flexDirection: 'column', gap: 5}} onSubmit={handleLogin}>
             <label>
               Email:
               <input
                 type="email"
                 name="email"
+                style={{width: '100%'}}
                 value={user.email}
                 onChange={handleInputChange}
                 required
@@ -60,6 +62,7 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
+                style={{width: '100%'}}
                 value={user.password}
                 onChange={handleInputChange}
                 required
@@ -67,10 +70,17 @@ const Login = () => {
               />
             </label>
             <br />
-            <button type="submit">Login</button>
+            <button style={{ width: "100%" }} type="submit">
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to={isLoggedIn ? "/" : "/inicioSesion"}
+              >
+                Login
+              </Link>
+            </button>
           </form>
           <button onClick={() => setShowRegister(!false)}>Register</button>
-        </>
+        </div>
       )}
     </>
   );
