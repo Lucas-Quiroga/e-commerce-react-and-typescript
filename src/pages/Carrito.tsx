@@ -1,43 +1,43 @@
-import React, { useContext } from 'react'
-import {CartContext} from "../context/CartContext"
-import { TodoContextType } from '../context/CartContext';
-import { CallFetch } from '../interfaces/CallFetch';
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import { TodoContextType } from "../context/CartContext";
+import { ButtonComponent } from "../components/ButtonComponent/ButtonComponent";
+import { CallFetch } from "../interfaces/CallFetch";
 
 type useStatential = {
-  totalCart:() => void;
-}
+  totalCart: () => void;
+};
 
 function Carrito() {
+  const { itemsCart } = React.useContext(CartContext) as TodoContextType;
 
-  const {itemsCart} = React.useContext(CartContext) as TodoContextType
-
-  const [total, setTotal] = React.useState<useStatential>()
+  const [total, setTotal] = React.useState<useStatential>();
 
   if (itemsCart.length === 0) {
-    return <h2 style={{textAlign: 'center'}}>No hay elementos</h2>
+    return <h2 style={{ textAlign: "center" }}>No hay elementos</h2>;
   }
-  
-  
-  let totalCart = itemsCart.reduce((acc, elem) => acc + elem.price, 0)
-  
+
+  let totalCart = itemsCart.reduce((acc, elem) => acc + elem.price, 0);
 
   return (
     <div>
       <div>
-      {itemsCart.map(elementos => (
-        <ul key={elementos.id}>
-          <li key={elementos.id}>
-            <h5>{elementos.title}</h5>
-            <h6>Price: ${elementos.price}</h6>
-          </li>
-          <hr />
-        </ul>
-        
-      ))}
-      <h2 style={{color: "black", textAlign: 'center'}}>Total a pagar: ${Math.round(totalCart)}</h2>
+        {itemsCart.map((elementos) => (
+          <ul key={elementos.id}>
+            <li key={elementos.id}>
+              <h5>{elementos.title}</h5>
+              <h6>Price: ${elementos.price}</h6>
+            </li>
+            <ButtonComponent />
+            <hr />
+          </ul>
+        ))}
+        <h2 style={{ color: "black", textAlign: "center" }}>
+          Total a pagar: ${Math.round(totalCart)}
+        </h2>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default Carrito
+export default Carrito;

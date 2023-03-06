@@ -4,21 +4,22 @@ import { createContext } from "react";
 
 type CallFetchCategory = "male" | "female";
 
-export interface CallFetch{
-  id: number,
-  userId: number,
-  price: number,
-  title: string,
-  category: CallFetchCategory
+export interface CallFetch {
+  id: number;
+  userId: number;
+  price: number;
+  title: string;
+  category: CallFetchCategory;
+  stock: number;
 }
 
 export type TodoContextType = {
-    itemsCart: CallFetch[];
-    cleanCart: () => void;
-    addToCart: (item: CallFetch) => void;
-    deleteToCart: (id: number) => void;
-    // totalCart:() => void;
-    // totalCartPrice?: number;
-  };
+  itemsCart: CallFetch[];
+  cleanCart: () => void;
+  addToCart: (item: CallFetch) => void;
+  deleteToCart: (id: number) => void;
+  // totalCart:() => void;
+  // totalCartPrice?: number;
+};
 
 export const CartContext = createContext<TodoContextType | null>(null);

@@ -6,35 +6,40 @@ const PRODUCTOS: CallFetch[] = [
       userId: 1,
       price: 1102.51,
       title: "Guthrie Berry",
-      category: "male"
+      category: "male",
+      stock: 10
     },
     {
       id: 2,
       userId: 2,
       price: 3424.41,
       title: "Kristie Jenkins",
-      category: "female"
+      category: "female",
+      stock: 10
     },
     {
       id: 3,
       userId: 3,
       price: 2327.6,
       title: "Haynes Larson",
-      category: "male"
+      category: "male",
+      stock: 10
     },
     {
       id: 4,
       userId: 4,
       price: 1242.8,
       title: "Nicole Stokes",
-      category: "female"
+      category: "female",
+      stock: 10
     },
     {
       id: 5,
       userId: 5,
       price: 1580.2,
       title: "Sandy Gardner",
-      category: "female"
+      category: "female",
+      stock: 10
     }
   ]
 
