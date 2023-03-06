@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { firstName } from '../../atoms/firstName'
 import Login from '../Login/Login'
 
 const Register = () => {
@@ -12,7 +14,7 @@ const Register = () => {
 	}
 
 	const [register, setRegister] = useState(getRegister())
-	const [nameUser, setNameUser] = useState('')
+	const [nameUser, setNameUser] = useRecoilState(firstName)
 	const [passwordUser, setPasswordUser] = useState('')
 	const [cambioDeComponente, setCambioDeComponente] = useState(false)
 
