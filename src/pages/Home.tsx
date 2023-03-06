@@ -1,9 +1,7 @@
-import React from "react";
-
 const Home = () => {
   return (
     <div>
-      <h1>Hola soy el inicio</h1>
+      <h1 style={{textAlign: 'center'}}>Hola soy el inicio</h1>
     </div>
   );
 };

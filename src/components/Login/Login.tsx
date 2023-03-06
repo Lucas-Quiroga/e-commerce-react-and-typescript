@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import Register from "../Register/Register";
-import Home from "../../pages/Home";
-import Logout from "../Logout/Logout";
-import { Link, Navigate } from "react-router-dom";
+import { useRecoilState } from 'recoil'
+import { login, firstName } from '../../atoms/atoms'
+import { Link} from "react-router-dom";
 import './Login.css'
 
 interface User {
+  name: string
   email: string;
   password: string;
 }
 
 const Login = () => {
-  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [user, setUser] = useState<User>({ name: "", email: "", password: "" });
   const [showRegister, setShowRegister] = useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState<boolean>(login);
+	const [name, setName] = useRecoilState(firstName)
+
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [event.target.name]: event.target.value });

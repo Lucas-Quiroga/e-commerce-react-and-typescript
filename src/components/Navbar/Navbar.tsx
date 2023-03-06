@@ -1,60 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
+import { Link } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { firstName, login } from '../../atoms/atoms'
+import './Navbar.css'
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useRecoilState(login)
+	const [name, setName] = useRecoilState(firstName)
 
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    setIsLoggedIn(isLoggedIn);
-  }, []);
+	const handleLogout = () => {
+		localStorage.removeItem('isLoggedIn')
+		setIsLoggedIn(false)
+	}
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  };
+	return (
+		<nav className='navbar'>
+			<ul className='ul_navbar'>
+				<li className='sections'>
+					<Link to='/'>Home</Link>
+				</li>
+				<li className='sections'>
+					<Link to='/carrito'>Carrito</Link>
+				</li>
+				<li className='sections'>
+					<Link to='/category'>Categorias</Link>
+				</li>
+				<li className='sections'>
+						<Link to='/inicioSesion' onClick={handleLogout}>
+							{isLoggedIn ? 'Cerrar Sesión' : 'Iniciar Sesión' }
+						</Link>
+				</li>
+				<li className='sections'>
+					{isLoggedIn === true ? `Hola, ${name}` : ''}
+				</li>
+			</ul>
+		</nav>
+	)
+}
 
-  // const renderAuthButton = () => {
-  //   if (isLoggedIn) {
-  //     return (
-  //       <li className="sections">
-  //         <button onClick={handleLogout}>Cerrar Sesión</button>
-  //       </li>
-  //     );
-  //   } else {
-  //     return (
-  //       <li className="sections">
-  //         {isLoggedIn ? <Link to="/inicioSesion">Cerrar Sesión</Link> : <Link to="/inicioSesion">Iniciar Sesión</Link>}
-  //       </li>
-  //     );
-  //   }
-  // };
-
-  return (
-    <nav className="navbar">
-      <ul className="ul_navbar">
-        <li className="sections">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="sections">
-          <Link to="/carrito">Carrito</Link>
-        </li>
-        <li className="sections">
-          <Link to="/category">Categorias</Link>
-        </li>
-        <li className="sections">
-          {isLoggedIn ? (
-            <Link to="/" onClick={handleLogout}>
-              Cerrar Sesión
-            </Link>
-          ) : (
-            <Link to="/inicioSesion">Iniciar Sesión</Link>
-          )}
-        </li>
-      </ul>
-    </nav>
-  );
-};
-
-export default Navbar;
+export default Navbar
