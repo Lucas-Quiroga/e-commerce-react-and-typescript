@@ -1,17 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {CartContext} from "../context/CartContext"
 import { TodoContextType } from '../context/CartContext';
-import { CallFetch } from '../interfaces/CallFetch';
 
-type useStatential = {
-  totalCart:() => void;
-}
+// type useStatential = {
+//   totalCart:() => void;
+// }
 
 function Carrito() {
 
   const {itemsCart} = React.useContext(CartContext) as TodoContextType
 
-  const [total, setTotal] = React.useState<useStatential>()
+  // const [total, setTotal] = React.useState<useStatential>()
 
   if (itemsCart.length === 0) {
     return <h2 style={{textAlign: 'center'}}>No hay elementos</h2>
