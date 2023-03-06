@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Register from "../Register/Register";
-import { useRecoilState } from 'recoil'
-import { login, firstName } from '../../atoms/atoms'
-import { Link} from "react-router-dom";
-import './Login.css'
+import { useRecoilState } from "recoil";
+import { login, firstName } from "../../atoms/atoms";
+import { Link } from "react-router-dom";
+import "./Login.css";
 
 interface User {
-  name: string
+  name: string;
   email: string;
   password: string;
 }
@@ -15,8 +15,7 @@ const Login = () => {
   const [user, setUser] = useState<User>({ name: "", email: "", password: "" });
   const [showRegister, setShowRegister] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState<boolean>(login);
-	const [name, setName] = useRecoilState(firstName)
-
+  const [name, setName] = useRecoilState(firstName);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -31,6 +30,7 @@ const Login = () => {
         alert("usuario ingresado");
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", "true");
+        setUser({ name: "", email: "", password: "" });
       } else {
         alert("Incorrect password");
       }
@@ -46,13 +46,16 @@ const Login = () => {
       ) : (
         <div className="login">
           <h2>Login</h2>
-          <form style={{display: 'flex', flexDirection: 'column', gap: 5}} onSubmit={handleLogin}>
+          <form
+            style={{ display: "flex", flexDirection: "column", gap: 5 }}
+            onSubmit={handleLogin}
+          >
             <label>
               Email:
               <input
                 type="email"
                 name="email"
-                style={{width: '100%'}}
+                style={{ width: "100%" }}
                 value={user.email}
                 onChange={handleInputChange}
                 required
@@ -65,7 +68,7 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                style={{width: '100%'}}
+                style={{ width: "100%" }}
                 value={user.password}
                 onChange={handleInputChange}
                 required
@@ -74,12 +77,7 @@ const Login = () => {
             </label>
             <br />
             <button style={{ width: "100%" }} type="submit">
-              <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to={isLoggedIn ? "/" : "/inicioSesion"}
-              >
-                Login
-              </Link>
+              Login
             </button>
           </form>
           <button onClick={() => setShowRegister(!false)}>Register</button>
