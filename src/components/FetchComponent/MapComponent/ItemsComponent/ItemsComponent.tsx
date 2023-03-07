@@ -1,7 +1,7 @@
 import React from "react";
-import { ButtonComponent } from "../../../ButtonComponent/ButtonComponent";
+
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { CartContext, TodoContextType } from "../../../../context/CartContext";
 
 type CallFetchCategory = "male" | "female";
@@ -16,12 +16,15 @@ interface CallFetch {
 }
 
 const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
+  const [render, setRender] = useState(false);
+
   const { addToCart, deleteToCart, cleanCart } = React.useContext(
     CartContext
   ) as TodoContextType;
 
   const additem = (item: CallFetch) => {
     addToCart({ ...item, id: Math.random() });
+    setRender(true);
   };
 
   return (
@@ -34,14 +37,19 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
       <br />
       <span>CATEGORY: {respuesta.category}</span>
       <hr />
-      <Link to={"/carrito"}>
-        <button>COMPRAR</button>
-      </Link>
 
-      <Link to={`/detail/${respuesta.id}`}>
-        <button>Ver detalle</button>
-      </Link>
-      <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
+      {render ? (
+        <div>
+          <Link to={"/carrito"}>
+            <button>Ir a la compra</button>
+          </Link>
+          <Link to={`/detail/${respuesta.id}`}>
+            <button>Ver detalle</button>
+          </Link>
+        </div>
+      ) : (
+        <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
+      )}
     </div>
   );
 };
