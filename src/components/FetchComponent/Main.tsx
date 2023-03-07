@@ -3,7 +3,6 @@ import MapComponent from "./MapComponent/MapComponent";
 import CatalogueFilter from "../CatalogueFilter/CatalogueFilter";
 import "./Main.css";
 import { useParams } from "react-router-dom";
-import MapComponentFilter from "./MapComponent/MapComponentFilter";
 import api from "../../api";
 
 type CallFetchCategory = "male" | "female";
@@ -28,6 +27,19 @@ interface CallFetch {
   stock: number;
 }
 
+interface Props {
+  data: CallFetch[];
+  filter?: CallFetchCategory;
+}
+
+const MapComponentWithData = ({ data, filter }: Props) => {
+  const filteredData = filter
+    ? data.filter((item) => item.category === filter)
+    : data;
+
+  return <MapComponent result={filteredData} />;
+};
+
 const Main = () => {
   const [result, setResult] = useState<CallFetch[]>(INTIAL_STATE);
 
@@ -36,14 +48,6 @@ const Main = () => {
   const [value, setValue] = useState();
 
   const { categoryId } = useParams();
-
-  const URL = "https://apimocha.com/infoapi/posts";
-
-  //logica para que antes de que guarde todos los datos primero los filtre
-  // fetch(api)
-  // 	.then (response => response.json())
-  // 	// cambie el slice del setResult por el setSearch
-  // 	.then (res => setResult(res))
 
   useEffect(() => {
     api.then((res) => setResult(res));
@@ -54,7 +58,7 @@ const Main = () => {
       const filtrado = result.filter(
         (elemento) => elemento.category === categoryId
       );
-      //podria cambiarse a setResult pero solucionar con un if
+
       setSearch(filtrado);
       setShow(true);
     } else {
@@ -64,17 +68,17 @@ const Main = () => {
 
   return (
     <>
-      {show ? (
-        <div className="view">
-          <CatalogueFilter />
-          <MapComponentFilter search={search} />
-        </div>
-      ) : (
-        <div className="view">
-          <CatalogueFilter />
-          <MapComponent result={result} />
-        </div>
-      )}
+      <div className="view">
+        <CatalogueFilter />
+        {show ? (
+          <MapComponentWithData
+            data={search}
+            filter={categoryId ? (categoryId as CallFetchCategory) : undefined}
+          />
+        ) : (
+          <MapComponentWithData data={result} />
+        )}
+      </div>
     </>
   );
 };
