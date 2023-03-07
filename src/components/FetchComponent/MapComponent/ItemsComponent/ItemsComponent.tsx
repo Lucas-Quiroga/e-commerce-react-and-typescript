@@ -1,7 +1,7 @@
 import React from "react";
-// import { ButtonComponent } from '../../../ButtonComponent/ButtonComponent'
+import { ButtonComponent } from "../../../ButtonComponent/ButtonComponent";
 import { Link } from "react-router-dom";
-// import { useContext } from 'react'
+import { useContext } from "react";
 import { CartContext, TodoContextType } from "../../../../context/CartContext";
 
 type CallFetchCategory = "male" | "female";
@@ -38,7 +38,6 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
         <button>COMPRAR</button>
       </Link>
 
-      {/* <ButtonComponent /> */}
       <Link to={`/detail/${respuesta.id}`}>
         <button>Ver detalle</button>
       </Link>

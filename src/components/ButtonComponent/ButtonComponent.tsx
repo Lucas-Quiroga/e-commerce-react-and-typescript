@@ -4,28 +4,28 @@ import { Link } from "react-router-dom";
 
 interface buttonProps {
   stock: number;
+  intial: number;
 }
 
 export const ButtonComponent = ({ stock }: any) => {
   const [intial, setIntial] = useState<buttonProps["stock"]>(10);
+  const [value, setValue] = useState<buttonProps["intial"]>(1);
 
-  const handlebutton = (value: number) => {
+  const handlebutton = (assignament: number) => {
     const valueDefect = intial + value;
 
-    if (valueDefect) {
+    if (valueDefect <= value && valueDefect >= 1) {
+      setValue(value + assignament);
+    } else {
+      alert("you can't add/remove more products");
     }
   };
 
   return (
-    <>
-      <div>
-        <h3>Titulo</h3>
-        <div>
-          <button onClick={() => handlebutton(-1)}>-</button>
-          <span>{intial}</span>
-          <button onClick={() => handlebutton(+1)}>+</button>
-        </div>
-      </div>
-    </>
+    <div>
+      <button onClick={() => handlebutton(-1)}>-</button>
+      <span>{value}</span>
+      <button onClick={() => handlebutton(+1)}>+</button>
+    </div>
   );
 };
