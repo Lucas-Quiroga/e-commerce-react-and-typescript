@@ -36,10 +36,19 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
       <span>PRICE: {respuesta.price}</span>
       <br />
       <span>CATEGORY: {respuesta.category}</span>
+      <br />
+      <span>STOCK: {respuesta.stock}</span>
       <hr />
 
       {render ? (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Link to={"/carrito"}>
             <button>Ir a la compra</button>
           </Link>

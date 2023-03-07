@@ -26,12 +26,16 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         <li className="sections">
-          <Link to="/category">Categorias</Link>
+          <Link to="/category">Categories</Link>
         </li>
         <li className="sections">
           <Link to="/inicioSesion" onClick={handleLogout}>
-            {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"}
+            {isLoggedIn ? "Log out" : "Log In"}
           </Link>
+        </li>
+
+        <li className="sections">
+          {isLoggedIn === true ? `Hola, ${name}` : ""}
         </li>
         <li className="sections">
           {itemsCart.length === 0 ? (
@@ -41,9 +45,6 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faShoppingCart} />
             </Link>
           )}
-        </li>
-        <li className="sections">
-          {isLoggedIn === true ? `Hola, ${name}` : ""}
         </li>
       </ul>
     </nav>

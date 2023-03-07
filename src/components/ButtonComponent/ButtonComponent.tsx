@@ -7,7 +7,7 @@ interface buttonProps {
   intial: number;
 }
 
-export const ButtonComponent = ({ stock }: any) => {
+export const ButtonComponent = ({ stock }: buttonProps) => {
   const [intial, setIntial] = useState<buttonProps["stock"]>(10);
   const [value, setValue] = useState<buttonProps["intial"]>(1);
 
@@ -23,6 +23,7 @@ export const ButtonComponent = ({ stock }: any) => {
 
   return (
     <div>
+      <span>STOCK DISPONIBLE: {stock}</span>
       <button onClick={() => handlebutton(-1)}>-</button>
       <span>{value}</span>
       <button onClick={() => handlebutton(+1)}>+</button>
