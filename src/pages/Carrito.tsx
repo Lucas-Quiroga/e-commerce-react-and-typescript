@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { TodoContextType } from "../context/CartContext";
-import { ButtonComponent } from "../components/ButtonComponent/ButtonComponent";
 import { CallFetch } from "../interfaces/CallFetch";
 
 type useStatential = {
@@ -28,7 +27,7 @@ function Carrito() {
               <h5>{elementos.title}</h5>
               <h6>Price: ${elementos.price}</h6>
             </li>
-            <ButtonComponent />
+            {/* <ButtonComponent /> */}
             <hr />
           </ul>
         ))}
