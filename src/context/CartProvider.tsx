@@ -25,9 +25,9 @@ const CartProvider = ({ children }: any) => {
       title: item.title,
       category: item.category,
       stock: item.stock,
+      quantity: 1,
     };
     setItemsCart([...itemsCart, newItem]);
-    console.log(itemsCart);
   };
 
   const deleteToCart = (id: number) => {
