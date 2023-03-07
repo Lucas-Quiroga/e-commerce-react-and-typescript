@@ -5,10 +5,9 @@ import './Main.css'
 import { useParams } from 'react-router-dom'
 import MapComponentFilter from './MapComponent/MapComponentFilter'
 import api from '../../api'
+import { CallFetch } from '../../interfaces/CallFetch'
 
-type CallFetchCategory = 'male' | 'female'
-
-const INTIAL_STATE: CallFetch[] = [
+const INITIAL_STATE: CallFetch[] = [
 	{
 		id: 0,
 		userId: 0,
@@ -18,20 +17,12 @@ const INTIAL_STATE: CallFetch[] = [
 	},
 ]
 
-interface CallFetch {
-	id: number
-	userId: number
-	price: number
-	title: string
-	category: CallFetchCategory
-}
-
 const Main = () => {
-	const [result, setResult] = useState<CallFetch[]>(INTIAL_STATE)
+	const [result, setResult] = useState<CallFetch[]>(INITIAL_STATE)
 
 	const [search, setSearch] = useState<CallFetch[]>([])
 	const [show, setShow] = useState(false)
-	const [value, setValue] = useState()
+	// const [value, setValue] = useState()
 
 	const { categoryId } = useParams()
 

@@ -1,88 +1,103 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { firstName } from '../../atoms/firstName'
+import { firstName } from '../../atoms/atoms'
 import Login from '../Login/Login'
 
+interface User {
+	name: string
+	email: string
+	password: string
+}
+
 const Register = () => {
-	const getRegister = () => {
-		let datos = localStorage.getItem('register')
-		if (datos) {
-			return JSON.parse(datos)
-		} else {
-			return []
-		}
+	const [user, setUser] = useState<User>({
+		name: '',
+		email: '',
+		password: '',
+	})
+	const [showLogin, setShowLogin] = useState<boolean>(false)
+	const [name, setName] = useRecoilState(firstName)
+
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setUser({ ...user, [event.target.name]: event.target.value })
 	}
 
-	const [register, setRegister] = useState(getRegister())
-	const [nameUser, setNameUser] = useRecoilState(firstName)
-	const [passwordUser, setPasswordUser] = useState('')
-	const [cambioDeComponente, setCambioDeComponente] = useState(false)
-
-	const enviarDatos = (e: any) => {
-		e.preventDefault()
-
-		let user = {
-			nameUser,
-			passwordUser,
-		}
-
-		setRegister([...register, user])
-		setCambioDeComponente(true)
+	const handleRegister = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		localStorage.setItem(user.email, JSON.stringify(user))
+		alert('User registered')
+		setUser({ name: '', email: '', password: '' })
+    setName(user.name)
+    console.log(user)
 	}
-
-	//cuando haya cambios en los registros los guarda en el localStorage (pero no es permanente)
-	useEffect(() => {
-		localStorage.setItem('register', JSON.stringify(register))
-	}, [register])
-
-	console.log(register)
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-			}}
-		>
-			{cambioDeComponente === false ? (
-				<div>
-					<h1 style={{textAlign: 'center'}}>Por favor registrate</h1>
+		<>
+			{showLogin ? (
+				<Login />
+			) : (
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+					}}
+				>
+					<h2>Register</h2>
 					<form
-						onSubmit={enviarDatos}
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							gap: 15,
+							gap: 5,
+							marginBottom: 20,
 						}}
+						onSubmit={handleRegister}
 					>
-						<div>
-							<label>Enter your username: </label>
+						<label>
+							Name:
+							<br />
 							<input
-								id='text'
 								type='text'
-								name='text'
-								onChange={e => setNameUser(e.target.value)}
+								name='name'
+								style={{ width: '100%' }}
+								value={user.name}
+								onChange={handleInputChange}
 								required
 							/>
-						</div>
-						<div>
-							<label>Enter your password: </label>
+						</label>
+						<br />
+						<label>
+							Email:
+							<br />
+							<input
+								type='email'
+								name='email'
+								style={{ width: '100%' }}
+								value={user.email}
+								onChange={handleInputChange}
+								required
+							/>
+						</label>
+						<br />
+						<label>
+							Password:
+							<br />
 							<input
 								type='password'
 								name='password'
-								onChange={e => setPasswordUser(e.target.value)}
+								style={{ width: '100%' }}
+								value={user.password}
+								onChange={handleInputChange}
 								required
 							/>
-						</div>
-
-						<button style={{ width: '100%' }}>Guardar datos</button>
+						</label>
+						<br />
+						<button type='submit'>Register</button>
 					</form>
+					<button onClick={() => setShowLogin(!false)}>Login</button>
 				</div>
-			) : (
-				<Login />
 			)}
-		</div>
+		</>
 	)
 }
 

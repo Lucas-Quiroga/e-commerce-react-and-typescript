@@ -1,31 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { CallFetch } from "../../../interfaces/CallFetch";
+import React, { useState, useEffect } from 'react'
+import { CallFetch } from '../../../interfaces/CallFetch'
 
 const DetailItemView = ({ detailObject }: { detailObject: CallFetch }) => {
-  const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+	useEffect(() => {
+		setLoading(true)
+		setTimeout(() => {
+			setLoading(false)
+		}, 1000)
+	}, [])
 
-  return (
-    <>
-      {loading ? (
-        <h2 style={{textAlign: 'center'}}>Loading...</h2>
-      ) : (
-        <div key={detailObject.id} style={{display: 'flex', flexDirection: 'column', justifyItems: 'center', alignItems: 'center'}}>
-          <h2>{detailObject.title}</h2>
-          <ul>
-            <li>{detailObject.price}</li>
-            <li>user id:{detailObject.userId}</li>
-          </ul>
-        </div>
-      )}
-    </>
-  );
-};
+	return (
+		<>
+			{loading ? (
+				<h2 style={{ textAlign: 'center' }}>Loading...</h2>
+			) : (
+				<div
+					style={{
+						display: 'flex',
+            justifyContent: 'center',
+						alignItems: 'center',
+						flexDirection: 'column',
+					}}
+					key={detailObject.id}
+				>
+					<h2>{detailObject.title}</h2>
 
-export default DetailItemView;
+          <p>Price: {detailObject.price}</p>
+          <p>user id: {detailObject.userId}</p>
+				</div>
+			)}
+		</>
+	)
+}
+
+export default DetailItemView

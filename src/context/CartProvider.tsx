@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { CallFetch } from '../interfaces/CallFetch';
 import { CartContext } from './CartContext';
-import { TodoContextType } from './CartContext';
+// import { TodoContextType } from './CartContext';
 
-const {Provider} = CartContext;
+// const {Provider} = CartContext;
 
-interface props {
-    children: JSX.Element | JSX.Element[]
-}
+// interface props {
+//     children: JSX.Element | JSX.Element[]
+// }
 
 
 const CartProvider = ({children}:any) => {

@@ -1,125 +1,116 @@
-import React, { useState } from 'react'
-import Register from '../Register/Register'
+import React, { useState } from "react";
+import Register from "../Register/Register";
+import { useRecoilState } from "recoil";
+import { login, firstName } from "../../atoms/atoms";
+import { Link } from "react-router-dom";
+import "./Login.css";
 
-interface usuarioDatos {
-	nombre: string
-	apellido: string
+interface User {
+  name: string;
+  email: string;
+  password: string;
 }
-
-// type login = true | false;
-
-// interface logear {
-//   comprobarSesion(): login;
-// }
 
 const Login = () => {
-	const comprobarSesion = () => {
-		let sesion = localStorage.getItem('loginUsuario')
-		if (sesion === `${true}`) {
-			return JSON.parse(sesion) //true
-		} else {
-			return false
-		}
-	}
+  const [user, setUser] = useState<User>({ name: "", email: "", password: "" });
+  const [showRegister, setShowRegister] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState<boolean>(login);
+  const [name, setName] = useRecoilState(firstName);
 
-	const [login, setLogin] = useState(comprobarSesion())
-	const [cambioDeComponente, setCambioDeComponente] = useState(false)
-	const [datos, setDatos] = useState<usuarioDatos>({
-		nombre: '',
-		apellido: '',
-	})
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
 
-	const handleInputChange = (event: any) => {
-		setDatos({
-			...datos,
-			[event.target.name]: event.target.value,
-		})
-	}
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const storedUser = localStorage.getItem(user.email);
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if (user.password === parsedUser.password) {
+        alert("usuario ingresado");
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", "true");
+        setUser({ name: "", email: "", password: "" });
+      } else {
+        alert("Incorrect password");
+      }
+    } else {
+      alert("User not found");
+    }
+  };
 
-	const enviarDatos = (event: any) => {
-		event.preventDefault()
+  return (
+    <>
+      {showRegister ? (
+        <Register />
+      ) : (
+        <div className="login">
+          <h2>Login</h2>
+          <form
+            style={{ display: "flex", flexDirection: "column", gap: 5 }}
+            onSubmit={handleLogin}
+          >
+            <label>
+              Email:
+              <input
+                type="email"
+                name="email"
+                style={{ width: "100%" }}
+                value={user.email}
+                onChange={handleInputChange}
+                required
+                autoComplete="current-password"
+              />
+            </label>
+            <br />
+            <label>
+              Password:
+              <input
+                type="password"
+                name="password"
+                style={{ width: "100%" }}
+                value={user.password}
+                onChange={handleInputChange}
+                required
+                autoComplete="current-password"
+              />
+            </label>
+            <br />
+            <button style={{ width: "100%" }} type="submit">
+              Login
+            </button>
+          </form>
+          <button onClick={() => setShowRegister(!false)}>Register</button>
+        </div>
+      )}
+    </>
+  );
+};
 
-		if (datos.nombre.length === 0 || datos.apellido.length === 0) {
-			alert('complete los datos por favor')
-		} else {
-			if (datos.nombre === 'admin' && datos.apellido === '123') {
-				localStorage.setItem('loginUsuario', `${true}`)
-				localStorage.setItem('usuario', datos.nombre)
-			} else {
-				setLogin(false)
-				alert('error')
-				setDatos({
-					nombre: '',
-					apellido: '',
-				})
-			}
-		}
+export default Login;
 
-		console.log('enviando datos...' + datos.nombre + ' ' + datos.apellido)
-	}
+//reusu o retoque de ideas
 
-	const registerComponent = () => {
-		setCambioDeComponente(true)
-	}
+// let nuevoRegistro = localStorage.getItem("register");
+// console.log(nuevoRegistro);
 
-	return (
-		<>
-			{cambioDeComponente === false ? (
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
-					<h1>Formulario</h1>
-					<form
-						className='row'
-						onSubmit={enviarDatos}
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							gap: 10,
-						}}
-					>
-						<div className='col-md-3'>
-							<input
-								type='text'
-								placeholder='Nombre'
-								className='form-control'
-								onChange={handleInputChange}
-								name='nombre'
-							></input>
-						</div>
-						<div className='col-md-3'>
-							<input
-								type='text'
-								placeholder='Apellido'
-								className='form-control'
-								onChange={handleInputChange}
-								name='apellido'
-							></input>
-						</div>
-						<button
-							type='submit'
-							className='btn btn-primary'
-							style={{ width: '100%' }}
-						>
-							Enviar
-						</button>
-						<button
-							onClick={registerComponent}
-							style={{ width: '100%' }}
-						>
-							Registrar
-						</button>
-					</form>
-				</div>
-			) : (
-				<Register />
-			)}
-		</>
-	)
-}
+//--------------------------------------------------------//
 
-export default Login
+// let UserValidation = JSON.parse(localStorage.getItem("register"));
+
+//--------------------------------------------------------//
+
+// let usuarioNameInputValidation = (
+//   document.getElementById("nameUser") as HTMLInputElement
+// ).value;
+// let usuarioPasswordInputValidation = (
+//   document.getElementById("namepassword") as HTMLInputElement
+// ).value;
+
+//--------------------------------------------------------//
+
+// const [nameusu, setNameusu] = useState("");
+// const [passwordusu, setPasswordusu] = useState("");
+
+// let usuarioNameInputValidation = nameusu;
+// let usuarioPasswordInputValidation = passwordusu;
