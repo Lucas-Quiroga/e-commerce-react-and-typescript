@@ -13,7 +13,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 1102.51,
       title: "Campera Adidas Retro",
       category: "male",
-      stock: 10
+      stock: 10,
+      img: pic1
     },
     {
       id: 2,
@@ -21,7 +22,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 3424.41,
       title: "Kappa Hoodie Essential",
       category: "female",
-      stock: 10
+      stock: 10,
+      img: pic2
     },
     {
       id: 3,
@@ -29,7 +31,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 2327.6,
       title: "Hoodie Basic Deep Blue",
       category: "male",
-      stock: 10
+      stock: 10,
+      img: pic3
     },
     {
       id: 4,
@@ -37,7 +40,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 1242.8,
       title: "Nike Camaleon",
       category: "female",
-      stock: 10
+      stock: 10,
+      img: shoes1
     },
     {
       id: 5,
@@ -45,7 +49,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 1580.2,
       title: "Nike Air Force 009",
       category: "female",
-      stock: 10
+      stock: 10,
+      img: shoes2
     }
   ]
 
