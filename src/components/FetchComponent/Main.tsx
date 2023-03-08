@@ -15,6 +15,7 @@ const INTIAL_STATE: CallFetch[] = [
     title: "",
     category: "female",
     stock: 0,
+    img: '',
   },
 ];
 
@@ -25,6 +26,7 @@ interface CallFetch {
   title: string;
   category: CallFetchCategory;
   stock: number;
+  img: string;
 }
 
 interface Props {

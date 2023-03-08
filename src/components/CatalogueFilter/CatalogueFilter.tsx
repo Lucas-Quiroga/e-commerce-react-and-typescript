@@ -33,17 +33,17 @@ const CatalogueFilter = () => {
     <div style={{ padding: 15, minWidth: 100 }}>
       <form>
         <h3>Filtros</h3>
-        <input type="checkbox" id="buzos" />
-        <label htmlFor="buzos">Buzos</label>
+        <input type="checkbox" id="buzos" style={{cursor: 'pointer'}} />
+        <label htmlFor="buzos" style={{userSelect: 'none', cursor: 'pointer'}}>Buzos</label>
         <br />
-        <input type="checkbox" id="calzas" />
-        <label htmlFor="calzas">Calzas</label>
+        <input type="checkbox" id="shoes" style={{cursor: 'pointer'}} />
+        <label htmlFor="shoes" style={{userSelect: 'none', cursor: 'pointer'}}>Shoes</label>
         <br />
-        <input type="checkbox" id="camperas" />
-        <label htmlFor="camperas">Camperas</label>
+        <input type="checkbox" id="camperas" style={{cursor: 'pointer'}} />
+        <label htmlFor="camperas" style={{userSelect: 'none', cursor: 'pointer'}}>Camperas</label>
         <br />
-        <input type="checkbox" id="carteras" />
-        <label htmlFor="carteras">Carteras</label>
+        <input type="checkbox" id="carteras" style={{cursor: 'pointer'}} />
+        <label htmlFor="carteras" style={{userSelect: 'none', cursor: 'pointer'}}>Carteras</label>
         <br />
       </form>
       <div>
@@ -59,6 +59,7 @@ const CatalogueFilter = () => {
             type="checkbox"
             id="male"
             name="male"
+            style={{cursor: 'pointer'}}
             onChange={(e) => handleValue("male")}
             checked={male}
           />{" "}
@@ -75,6 +76,7 @@ const CatalogueFilter = () => {
             type="checkbox"
             id="female"
             name="female"
+            style={{cursor: 'pointer'}}
             onChange={(e) => handleValue("female")}
             checked={female}
           />{" "}

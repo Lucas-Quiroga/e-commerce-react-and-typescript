@@ -11,6 +11,7 @@ export interface CallFetch {
   title: string;
   category: CallFetchCategory;
   stock: number;
+  img: string;
 }
 
 export type TodoContextType = {
