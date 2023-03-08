@@ -1,13 +1,25 @@
 import { createContext } from "react";
-import { CallFetch } from "../interfaces/CallFetch";
+// import { CallFetch } from "../interfaces/CallFetch";
+// export const CartContext = createContext({});
+
+type CallFetchCategory = "male" | "female";
+
+export interface CallFetch {
+  id: number;
+  userId: number;
+  price: number;
+  title: string;
+  category: CallFetchCategory;
+  stock: number;
+}
 
 export type TodoContextType = {
-    itemsCart: CallFetch[];
-    cleanCart: () => void;
-    addToCart: (item: CallFetch) => void;
-    deleteToCart: (id: number) => void;
-    // totalCart:() => void;
-    // totalCartPrice?: number;
-  };
+  itemsCart: CallFetch[];
+  cleanCart: () => void;
+  addToCart: (item: CallFetch) => void;
+  deleteToCart: (id: number) => void;
+  // totalCart:() => void;
+  // totalCartPrice?: number;
+};
 
 export const CartContext = createContext<TodoContextType | null>(null);

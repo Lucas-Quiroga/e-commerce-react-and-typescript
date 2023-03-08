@@ -1,37 +1,32 @@
-import React,{useState} from 'react'
-import DetailComponent from '../DetailComponent/DetailComponent'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import DetailComponent from "../DetailComponent/DetailComponent";
+import { Link } from "react-router-dom";
 
-const INTIAL_STATE = {
-    intial: 1
+interface buttonProps {
+  stock: number;
+  intial: number;
 }
 
-export const ButtonComponent = () => {
+export const ButtonComponent = ({ stock }: buttonProps) => {
+  const [intial, setIntial] = useState<buttonProps["stock"]>(10);
+  const [value, setValue] = useState<buttonProps["intial"]>(1);
 
-const [intial, setIntial] = useState(INTIAL_STATE["intial"])
+  const handlebutton = (assignament: number) => {
+    const valueDefect = intial + value;
 
-const handlebutton = (value:string) => {
-
-    const valueDefect = 1;
-
-    if (value == "-") {
-        setIntial(intial - valueDefect)
-    } else if (value === "+") {
-        setIntial(intial + valueDefect)
-    } if (intial <= 0 || intial >= 10) {
-        return alert("no puedes restar o sumar mas")
+    if (valueDefect <= value && valueDefect >= 1) {
+      setValue(value + assignament);
+    } else {
+      alert("you can't add/remove more products");
     }
-}
+  };
 
   return (
-    <>  
     <div>
-        <h3>Titulo</h3>
-        <div><button onClick={()=> handlebutton("-")}>-</button>
-        <span>{intial}</span>
-        <button onClick={()=> handlebutton("+")}>+</button></div>
+      <span>STOCK DISPONIBLE: {stock}</span>
+      <button onClick={() => handlebutton(-1)}>-</button>
+      <span>{value}</span>
+      <button onClick={() => handlebutton(+1)}>+</button>
     </div>
-    
-    </>
-  )
-}
+  );
+};
