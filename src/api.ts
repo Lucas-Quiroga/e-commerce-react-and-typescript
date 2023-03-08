@@ -7,7 +7,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 1102.51,
       title: "Guthrie Berry",
       category: "male",
-      stock: 10
+      stock: 10,
+      quantity: 1
     },
     {
       id: 2,
@@ -15,7 +16,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 3424.41,
       title: "Kristie Jenkins",
       category: "female",
-      stock: 10
+      stock: 10,
+      quantity: 1
     },
     {
       id: 3,
@@ -23,7 +25,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 2327.6,
       title: "Haynes Larson",
       category: "male",
-      stock: 10
+      stock: 10,
+      quantity: 1
     },
     {
       id: 4,
@@ -31,7 +34,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 1242.8,
       title: "Nicole Stokes",
       category: "female",
-      stock: 10
+      stock: 10,
+      quantity: 1
     },
     {
       id: 5,
@@ -39,7 +43,8 @@ const PRODUCTOS: CallFetch[] = [
       price: 1580.2,
       title: "Sandy Gardner",
       category: "female",
-      stock: 10
+      stock: 10,
+      quantity: 1
     }
   ]
 

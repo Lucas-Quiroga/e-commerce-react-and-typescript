@@ -11,12 +11,13 @@ export interface CallFetch {
   title: string;
   category: CallFetchCategory;
   stock: number;
+  quantity: number;
 }
 
 export type TodoContextType = {
   itemsCart: CallFetch[];
   cleanCart: () => void;
-  addToCart: (item: CallFetch) => void;
+  addToCart: (obj: CallFetch) => void;
   deleteToCart: (id: number) => void;
   // totalCart:() => void;
   // totalCartPrice?: number;

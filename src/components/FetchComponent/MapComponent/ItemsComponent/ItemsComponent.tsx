@@ -22,10 +22,15 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
     CartContext
   ) as TodoContextType;
 
-  const additem = (item: CallFetch) => {
-    addToCart({ ...item, id: Math.random() });
-    setRender(true);
-  };
+  // const additem = (obj: CallFetch) => {
+  //   addToCart({ ...obj, id: Math.random() });
+  //   setRender(true);
+  // };
+
+  // const onadd = (quantityToAdd: any, obj: CallFetch) => {
+  //   setRender(true);
+  //   addToCart({ quantity: quantityToAdd, ...obj });
+  // };
 
   return (
     <div>
@@ -57,7 +62,8 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
           </Link>
         </div>
       ) : (
-        <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
+        ""
+        // <button onClick={() => onadd={onadd}}>Agregar al carrito</button>
       )}
     </div>
   );
