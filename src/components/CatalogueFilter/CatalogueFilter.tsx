@@ -49,7 +49,8 @@ const CatalogueFilter = () => {
       <div>
         <h3>Gender</h3>
         <NavLink
-          to="/category/male"
+          to={male === false ? '/category/male' : '/category'}
+          // to="/category/male"
           style={{ textDecoration: "none", color: "black" }}
           onClick={handleMaleClick}
         >
@@ -65,7 +66,7 @@ const CatalogueFilter = () => {
         </NavLink>{" "}
         <br />
         <NavLink
-          to="/category/female"
+          to={female === false ? '/category/female' : '/category'}
           style={{ textDecoration: "none", color: "black" }}
           onClick={handleFemaleClick}
         >
