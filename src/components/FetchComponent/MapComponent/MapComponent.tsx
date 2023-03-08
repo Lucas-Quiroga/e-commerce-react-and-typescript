@@ -10,6 +10,7 @@ interface CallFetch {
   title: string;
   category: CallFetchCategory;
   stock: number;
+  img: string;
 }
 
 const MapComponent = ({ result }: { result: CallFetch[] }) => {

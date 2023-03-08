@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { CartContext, TodoContextType } from "../../../../context/CartContext";
 
 type CallFetchCategory = "male" | "female";
@@ -13,6 +13,7 @@ interface CallFetch {
   title: string;
   category: CallFetchCategory;
   stock: number;
+  img: string;
 }
 
 const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
@@ -22,28 +23,35 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
     CartContext
   ) as TodoContextType;
 
-  // const additem = (obj: CallFetch) => {
-  //   addToCart({ ...obj, id: Math.random() });
+  // const additem = (item: CallFetch) => {
+  //   addToCart({ ...item, id: Math.random() });
   //   setRender(true);
-  // };
-
-  // const onadd = (quantityToAdd: any, obj: CallFetch) => {
-  //   setRender(true);
-  //   addToCart({ quantity: quantityToAdd, ...obj });
   // };
 
   return (
-    <div>
-      <h3>Nombre: {respuesta.title}</h3>
-      <p>ID: {respuesta.id}</p>
+    <div
+      style={{
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        gap: 5,
+      }}
+    >
+      <h3>{respuesta.title}</h3>
+      <span>ID: {respuesta.id}</span>
+      <br />
       <span>USER ID: {respuesta.userId}</span>
       <br />
-      <span>PRICE: {respuesta.price}</span>
-      <br />
-      <span>CATEGORY: {respuesta.category}</span>
+      <span>{respuesta.category}</span>
       <br />
       <span>STOCK: {respuesta.stock}</span>
-      <hr />
+      <br />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={respuesta.img} height="300"></img>
+      </div>
+      <span>${respuesta.price}</span>
+      <br />
+      <hr style={{ width: "100%" }} />
 
       {render ? (
         <div
@@ -63,7 +71,7 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
         </div>
       ) : (
         ""
-        // <button onClick={() => onadd={onadd}}>Agregar al carrito</button>
+        // <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
       )}
     </div>
   );

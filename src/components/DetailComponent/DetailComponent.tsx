@@ -13,7 +13,6 @@ const DetailComponent = () => {
     title: "",
     category: "male",
     stock: 0,
-    quantity: 0,
   });
 
   // const [show, setShow] = useState(false);

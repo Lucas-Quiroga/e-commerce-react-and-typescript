@@ -17,17 +17,17 @@ const CartProvider = ({ children }: any) => {
     setItemsCart([]);
   };
 
-  const addToCart = (obj: CallFetch) => {
-    const index = itemsCart.findIndex((product) => product.id === obj.id);
-    if (index !== -1) {
-      setItemsCart(
-        itemsCart.map((e) =>
-          e.id === obj.id ? { ...e, quantity: e.quantity + obj.quantity } : e
-        )
-      );
-    } else {
-      setItemsCart([{ ...obj, quantity: 1 }, ...itemsCart]);
-    }
+  const addToCart = (item: CallFetch) => {
+    const newItem: CallFetch = {
+      id: Math.random(),
+      userId: Math.random(),
+      price: item.price,
+      title: item.title,
+      category: item.category,
+      stock: item.stock,
+      quantity: 1,
+    };
+    setItemsCart([...itemsCart, newItem]);
   };
 
   const deleteToCart = (id: number) => {
