@@ -23,10 +23,10 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
     CartContext
   ) as TodoContextType;
 
-  // const additem = (item: CallFetch) => {
-  //   addToCart({ ...item, id: Math.random() });
-  //   setRender(true);
-  // };
+  const additem = (item: CallFetch) => {
+    addToCart({ ...item, id: Math.random() });
+    setRender(true);
+  };
 
   return (
     <div
@@ -70,8 +70,7 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
           </Link>
         </div>
       ) : (
-        ""
-        // <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
+        <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
       )}
     </div>
   );
