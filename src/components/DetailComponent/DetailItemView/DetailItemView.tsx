@@ -31,7 +31,7 @@ const DetailItemView = ({ detailObject }: { detailObject: CallFetch }) => {
           <p>Price: ${detailObject.price}</p>
           {/* <p>user id: {detailObject.userId}</p> */}
 
-
+          
           <Link to={"/category"}>
             <button>Volver</button>
           </Link>
