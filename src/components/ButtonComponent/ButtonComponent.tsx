@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import DetailComponent from "../DetailComponent/DetailComponent";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../../context/CartContext";
@@ -30,8 +28,8 @@ export const ButtonComponent = ({ id }: any) => {
   };
 
   return (
-    <div>
-      <div>
+    <div style={{display: 'flex', gap: 10, flexDirection: 'column'}}>
+      <div style={{display: 'flex', gap: 10, justifyContent: 'center'}}>
         <button onClick={() => handlebutton(-1)}>-</button>
         <span>{value}</span>
         <button onClick={() => handlebutton(+1)}>+</button>

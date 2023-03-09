@@ -44,7 +44,7 @@ const PRODUCTOS: CallFetch[] = [
       title: "Nike Camaleon",
       category: "female",
       stock: 10,
-      img: shoes1
+      img: shoes1,
     },
     {
       id: 5,
