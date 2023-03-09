@@ -1,12 +1,12 @@
-useEffect(() => {
-  // api.then((resolve)=>  setObject(resolve.find((elem) => elem.id === parseInt(detailId))
-  // // if (detailId) {
-  // // 	setDetailObject(object.find((elemento) => elemento.id === parseInt(detailId)));
-  // // 	setShow(true);
-  // // } else {
-  // // 	setShow(false)
-  // // }
-}, []);
+// useEffect(() => {
+//   // api.then((resolve)=>  setObject(resolve.find((elem) => elem.id === parseInt(detailId))
+//   // // if (detailId) {
+//   // // 	setDetailObject(object.find((elemento) => elemento.id === parseInt(detailId)));
+//   // // 	setShow(true);
+//   // // } else {
+//   // // 	setShow(false)
+//   // // }
+// }, []);
 
 // buscar con find el detalle
 

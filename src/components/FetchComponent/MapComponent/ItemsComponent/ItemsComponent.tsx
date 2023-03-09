@@ -1,20 +1,8 @@
 import React from 'react'
-
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { CartContext, TodoContextType } from '../../../../context/CartContext'
-
-type CallFetchCategory = 'male' | 'female'
-
-interface CallFetch {
-	id: number
-	userId: number
-	price: number
-	title: string
-	category: CallFetchCategory
-	stock: number
-	img: string
-}
+import { CallFetch } from "../../../../interfaces/CallFetch";
 
 const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
 	const [render, setRender] = useState(false)

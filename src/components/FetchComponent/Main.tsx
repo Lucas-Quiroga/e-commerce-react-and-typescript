@@ -4,8 +4,8 @@ import CatalogueFilter from "../CatalogueFilter/CatalogueFilter";
 import "./Main.css";
 import { useParams } from "react-router-dom";
 import api from "../../api";
-
-type CallFetchCategory = "male" | "female";
+import type { CallFetchCategory } from "../../interfaces/CallFetch";
+import { CallFetch } from "../../interfaces/CallFetch";
 
 const INTIAL_STATE: CallFetch[] = [
   {
@@ -18,16 +18,6 @@ const INTIAL_STATE: CallFetch[] = [
     img: '',
   },
 ];
-
-interface CallFetch {
-  id: number;
-  userId: number;
-  price: number;
-  title: string;
-  category: CallFetchCategory;
-  stock: number;
-  img: string;
-}
 
 interface Props {
   data: CallFetch[];

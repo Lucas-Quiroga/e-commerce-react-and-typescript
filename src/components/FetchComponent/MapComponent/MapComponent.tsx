@@ -1,17 +1,7 @@
 import React from "react";
 import ItemsComponent from "./ItemsComponent/ItemsComponent";
-
-type CallFetchCategory = "male" | "female";
-
-interface CallFetch {
-  id: number;
-  userId: number;
-  price: number;
-  title: string;
-  category: CallFetchCategory;
-  stock: number;
-  img: string;
-}
+import type { CallFetchCategory } from "../../../interfaces/CallFetch";
+import { CallFetch } from "../../../interfaces/CallFetch";
 
 const MapComponent = ({ result }: { result: CallFetch[] }) => {
   return (

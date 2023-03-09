@@ -1,18 +1,5 @@
 import { createContext } from "react";
-// import { CallFetch } from "../interfaces/CallFetch";
-// export const CartContext = createContext({});
-
-type CallFetchCategory = "male" | "female";
-
-export interface CallFetch {
-  id: number;
-  userId: number;
-  price: number;
-  title: string;
-  category: CallFetchCategory;
-  stock: number;
-  img: string;
-}
+import { CallFetch } from "../interfaces/CallFetch";
 
 export type TodoContextType = {
   itemsCart: CallFetch[];

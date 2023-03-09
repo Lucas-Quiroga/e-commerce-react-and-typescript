@@ -1,7 +1,10 @@
 import { CallFetch } from "./interfaces/CallFetch";
-import pic1 from './assets/pic1.jpeg'
-import pic2 from './assets/pic2.jpeg'
-import pic3 from './assets/pic3.jpeg'
+import campera1 from './assets/campera1.jpeg'
+import campera2 from './assets/campera2.jpg'
+import campera3 from './assets/campera3.jpeg'
+import buzo1 from './assets/buzo1.jpeg'
+import buzo2 from './assets/buzo2.jpeg'
+import buzo3 from './assets/buzo3.jpg'
 import shoes1 from './assets/shoes1.jpg'
 import shoes2 from './assets/shoes2.jpg'
 import shoes3 from './assets/shoes3.jpg'
@@ -14,7 +17,7 @@ const PRODUCTOS: CallFetch[] = [
       title: "Campera Adidas Retro",
       category: "male",
       stock: 10,
-      img: pic1
+      img: campera1,
     },
     {
       id: 2,
@@ -23,7 +26,7 @@ const PRODUCTOS: CallFetch[] = [
       title: "Kappa Hoodie Essential",
       category: "female",
       stock: 10,
-      img: pic2,
+      img: buzo1,
     },
     {
       id: 3,
@@ -32,7 +35,7 @@ const PRODUCTOS: CallFetch[] = [
       title: "Hoodie Basic Deep Blue",
       category: "male",
       stock: 10,
-      img: pic3,
+      img: buzo2,
     },
     {
       id: 4,
@@ -60,6 +63,33 @@ const PRODUCTOS: CallFetch[] = [
       category: "male",
       stock: 10,
       img: shoes3,
+    },
+    {
+      id: 7,
+      userId: 7,
+      price: 1102.51,
+      title: "Campera Nike Retro",
+      category: "male",
+      stock: 10,
+      img: campera2,
+    },
+    {
+      id: 8,
+      userId: 8,
+      price: 1102.51,
+      title: "Campera Nike Old School",
+      category: "male",
+      stock: 10,
+      img: campera3,
+    },
+    {
+      id: 9,
+      userId: 9,
+      price: 2327.6,
+      title: "Buzo Old",
+      category: "female",
+      stock: 10,
+      img: buzo3,
     },
   ]
 

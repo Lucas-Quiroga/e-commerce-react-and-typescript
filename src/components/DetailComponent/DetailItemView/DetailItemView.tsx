@@ -28,7 +28,7 @@ const DetailItemView = ({ detailObject }: { detailObject: CallFetch }) => {
 					<h2>{detailObject.title}</h2>
 					<img src={detailObject.img} height='700'></img>
           <p>Price: ${detailObject.price}</p>
-          <p>user id: {detailObject.userId}</p>
+          {/* <p>user id: {detailObject.userId}</p> */}
 				</div>
 			)}
 		</>
