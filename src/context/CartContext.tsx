@@ -4,7 +4,7 @@ import { CallFetch } from "../interfaces/CallFetch";
 export type TodoContextType = {
   itemsCart: CallFetch[];
   cleanCart: () => void;
-  addToCart: (item: CallFetch) => void;
+  addToCart: (obj: CallFetch) => void;
   deleteToCart: (id: number) => void;
   // totalCart:() => void;
   // totalCartPrice?: number;

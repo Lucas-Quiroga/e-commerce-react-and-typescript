@@ -28,7 +28,7 @@ function Carrito() {
               <h5>{elementos.title}</h5>
               <h6>Price: ${elementos.price}</h6>
             </li>
-            {/* <ButtonComponent  /> stock={elementos.stock} */}
+            <ButtonComponent id={elementos.id} />
             <hr />
           </ul>
         ))}
