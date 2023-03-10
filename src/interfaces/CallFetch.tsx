@@ -7,6 +7,7 @@ export interface CallFetch {
   title: string;
   category: CallFetchCategory;
   stock: number;
-  quantity?: number;
+  quantity: number;
+
   img: string;
 }

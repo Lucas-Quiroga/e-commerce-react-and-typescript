@@ -15,7 +15,8 @@ const INTIAL_STATE: CallFetch[] = [
     title: "",
     category: "female",
     stock: 0,
-    img: '',
+    img: "",
+    quantity: 0,
   },
 ];
 

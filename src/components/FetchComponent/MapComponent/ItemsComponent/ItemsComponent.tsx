@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import { CartContext, TodoContextType } from '../../../../context/CartContext'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { CartContext, TodoContextType } from "../../../../context/CartContext";
 import { CallFetch } from "../../../../interfaces/CallFetch";
 
 const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
