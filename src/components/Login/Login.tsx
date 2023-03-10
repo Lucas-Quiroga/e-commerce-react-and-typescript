@@ -82,7 +82,7 @@ const Login = () => {
             </button>
           </form>
           <button onClick={() => setShowRegister(!false)}>Register</button>
-          <Shop />
+          {/* <Shop /> */}
         </div>
       )}
     </>

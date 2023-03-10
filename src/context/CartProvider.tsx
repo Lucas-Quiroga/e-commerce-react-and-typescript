@@ -56,14 +56,14 @@ const CartProvider = ({ children }: any) => {
     setItemsCart(itemsCart.filter((product) => product.id !== id));
   };
 
-  // const totalCart = () => {
-  //   return itemsCart.reduce((acc, elem) => acc + elem.price, 0)
-  // }
+  const totalPrice = () => {
+    return itemsCart.reduce((acc, b) => acc + b.quantity * b.price, 0);
+  };
 
   return (
     // HIGH ORDER COMPONENT
     <CartContext.Provider
-      value={{ itemsCart, cleanCart, addToCart, deleteToCart }}
+      value={{ itemsCart, cleanCart, addToCart, deleteToCart, totalPrice }}
     >
       {children}
     </CartContext.Provider>

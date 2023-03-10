@@ -6,15 +6,22 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../../context/CartContext";
 import { TodoContextType } from "../../context/CartContext";
 
+type CallFetchCategory = "male" | "female";
+
 interface buttonProps {
-  stock: number;
-  intial: number;
   id: number;
+  userId: number;
+  price: number;
+  title: string;
+  category: CallFetchCategory;
+  stock: number;
+  quantity: number;
+  img: string;
 }
 
-export const ButtonComponent = ({ id }: any) => {
+export const ButtonComponent = ({ stock, id }: buttonProps) => {
   // const [intial, setIntial] = useState<buttonProps["stock"]>(10);
-  const [value, setValue] = useState<buttonProps["intial"]>(1);
+  const [value, setValue] = useState<buttonProps["stock"]>(1);
 
   const { deleteToCart, itemsCart } = React.useContext(
     CartContext

@@ -6,6 +6,7 @@ export type TodoContextType = {
   cleanCart: () => void;
   addToCart: (obj: CallFetch) => void;
   deleteToCart: (id: number) => void;
+  totalPrice: () => void;
   // totalCart:() => void;
   // totalCartPrice?: number;
 };
