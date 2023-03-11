@@ -1,23 +1,25 @@
 import React, { useContext } from "react";
+import { atom, useRecoilState } from "recoil";
 import { CartContext } from "../context/CartContext";
 import { TodoContextType } from "../context/CartContext";
 import { CallFetch } from "../interfaces/CallFetch";
 import { ButtonComponent } from "../components/ButtonComponent/ButtonComponent";
+import { totalCartPrice } from "../atoms/atoms";
 
 type useStatential = {
   totalCart: () => void;
 };
 
 function Carrito() {
-  const { itemsCart } = React.useContext(CartContext) as TodoContextType;
+  const { itemsCart, totalPrice } = React.useContext(
+    CartContext
+  ) as TodoContextType;
 
-  const [total, setTotal] = React.useState<useStatential>();
+  const [totalCart, setTotalCart] = useRecoilState(totalCartPrice);
 
   if (itemsCart.length === 0) {
     return <h2 style={{ textAlign: "center" }}>No hay elementos</h2>;
   }
-
-  let totalCart = itemsCart.reduce((acc, elem) => acc + elem.price, 0);
 
   return (
     <div>
@@ -26,7 +28,7 @@ function Carrito() {
           <ul key={elementos.id}>
             <li key={elementos.id}>
               <h5>{elementos.title}</h5>
-              <h6>Price: ${elementos.price}</h6>
+              {/* <h6>Price general: ${elementos.price}</h6> */}
             </li>
             <ButtonComponent
               id={elementos.id}
