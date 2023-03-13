@@ -63,7 +63,14 @@ const CartProvider = ({ children }: any) => {
   return (
     // HIGH ORDER COMPONENT
     <CartContext.Provider
-      value={{ itemsCart, cleanCart, addToCart, deleteToCart, totalPrice }}
+      value={{
+        itemsCart,
+        cleanCart,
+        addToCart,
+        deleteToCart,
+        totalPrice,
+        setItemsCart,
+      }}
     >
       {children}
     </CartContext.Provider>

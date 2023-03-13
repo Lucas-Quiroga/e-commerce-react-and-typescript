@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 import { CartContext } from "../context/CartContext";
 import { TodoContextType } from "../context/CartContext";

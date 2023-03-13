@@ -19,3 +19,4 @@ export const cantidadStock = atom({
   key: "cantidadStock",
   default: 0
 })
+

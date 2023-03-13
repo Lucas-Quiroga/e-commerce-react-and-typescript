@@ -33,31 +33,28 @@ export const ButtonComponent = ({
   //cambia el precio total pero se suma el de todos al mismo tiempo
   const [totalCart, setTotalCart] = useRecoilState(totalCartPrice);
 
-  const { deleteToCart, itemsCart, totalPrice } = React.useContext(
-    CartContext
-  ) as TodoContextType;
+  const { deleteToCart, itemsCart, totalPrice, setItemsCart } =
+    React.useContext(CartContext) as TodoContextType;
 
   const handlebutton = (assignament: number) => {
     const valueTotal = cantidad + assignament;
     if (valueTotal >= 1 && valueTotal <= stock) {
       setCantidad(valueTotal);
-      console.log(valueTotal);
+      const updatedItems = itemsCart.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: valueTotal };
+        }
+        return item;
+      });
+      setItemsCart(updatedItems);
       setTotalCart(
-        itemsCart.reduce((acc, item) => {
-          if (item.id === id) {
-            return acc + item.price * valueTotal;
-          } else {
-            return acc + item.price * item.quantity;
-          }
-        }, 0)
+        updatedItems.reduce((acc, b) => acc + b.quantity * b.price, 0)
       );
     }
   };
 
   React.useEffect(() => {
-    setTotalCart(
-      itemsCart.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    );
+    setTotalCart(itemsCart.reduce((acc, b) => acc + b.quantity * b.price, 0));
   }, [itemsCart, setTotalCart]);
 
   const formatter = new Intl.NumberFormat("es-AR", {
