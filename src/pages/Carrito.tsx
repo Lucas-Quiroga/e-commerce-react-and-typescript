@@ -1,7 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { CartContext } from '../context/CartContext'
 import { TodoContextType } from '../context/CartContext'
-import { CallFetch } from '../interfaces/CallFetch'
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent'
 import { Link } from 'react-router-dom'
 
@@ -30,7 +29,7 @@ function Carrito() {
 					flexWrap: 'wrap',
 				}}
 			>
-				{itemsCart.map(item => (
+				{itemsCart.map(({id, title, img, stock, price}) => (
 					<div
 						style={{
 							display: 'flex',
@@ -41,18 +40,17 @@ function Carrito() {
 							marginBottom: 5,
 							padding: 5,
 						}}
-						key={item.id}
 					>
-						<h5>{item.title}</h5>
+						<h3>{title}</h3>
 						<img
-							src={item.img}
+							src={img}
 							alt='item'
 							style={{ height: 200, width: 200 }}
 						/>
-						<p style={{ margin: 0 }}>Price: ${item.price}</p>
-						<p>Stock: {item.stock}</p>
+						<p style={{ margin: 0 }}>Price: ${price}</p>
+						<p>Stock: {stock}</p>
 
-						<ButtonComponent id={item.id} totalPrice={totalPrice} />
+						<ButtonComponent id={id} totalPrice={totalPrice} />
 					</div>
 				))}
 				

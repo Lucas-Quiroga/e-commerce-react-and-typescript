@@ -30,7 +30,7 @@ const Navbar = () => {
         </li>
         <li className="sections">
           <Link to="/inicioSesion" onClick={handleLogout}>
-            {isLoggedIn ? "Log out" : "Log In"}
+            {isLoggedIn ? "Log Out" : "Log In"}
           </Link>
         </li>
 
