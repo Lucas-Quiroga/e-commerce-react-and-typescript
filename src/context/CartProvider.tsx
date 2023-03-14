@@ -46,7 +46,7 @@ const CartProvider = ({ children }: any) => {
         category: item.category,
         stock: item.stock,
         quantity: 1,
-        img: "",
+        img: item.img,
       };
       setItemsCart([...itemsCart, newItem]);
     }

@@ -28,6 +28,7 @@ function Carrito() {
           <ul key={elementos.id}>
             <li key={elementos.id}>
               <h5>{elementos.title}</h5>
+              <img src={elementos.img} />
               {/* <h6>Price general: ${elementos.price}</h6> */}
             </li>
             <ButtonComponent
