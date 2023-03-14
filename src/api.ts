@@ -18,6 +18,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "male",
       stock: 10,
       img: campera1,
+      quantity: 1,
     },
     {
       id: 2,
@@ -27,6 +28,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "female",
       stock: 10,
       img: buzo1,
+      quantity: 1,
     },
     {
       id: 3,
@@ -36,6 +38,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "male",
       stock: 10,
       img: buzo2,
+      quantity: 1,
     },
     {
       id: 4,
@@ -45,6 +48,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "female",
       stock: 10,
       img: shoes1,
+      quantity: 1,
     },
     {
       id: 5,
@@ -54,6 +58,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "female",
       stock: 10,
       img: shoes2,
+      quantity: 1,
     },
     {
       id: 6,
@@ -63,6 +68,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "male",
       stock: 10,
       img: shoes3,
+      quantity: 1,
     },
     {
       id: 7,
@@ -72,6 +78,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "male",
       stock: 10,
       img: campera2,
+      quantity: 1,
     },
     {
       id: 8,
@@ -81,6 +88,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "male",
       stock: 10,
       img: campera3,
+      quantity: 1,
     },
     {
       id: 9,
@@ -90,6 +98,7 @@ const PRODUCTOS: CallFetch[] = [
       category: "female",
       stock: 10,
       img: buzo3,
+      quantity: 1,
     },
   ]
 
