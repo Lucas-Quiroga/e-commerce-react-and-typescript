@@ -39,7 +39,7 @@ const CartProvider = ({ children }: any) => {
     } else {
       // Si no, agrega uno nuevo con cantidad 1
       const newItem: CallFetch = {
-        id: Math.random(),
+        id: item.id,
         userId: Math.random(),
         price: item.price,
         title: item.title,
@@ -65,6 +65,7 @@ const CartProvider = ({ children }: any) => {
     <CartContext.Provider
       value={{
         itemsCart,
+        getBuy,
         cleanCart,
         addToCart,
         deleteToCart,

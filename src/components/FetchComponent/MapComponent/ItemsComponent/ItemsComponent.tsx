@@ -12,22 +12,29 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
   const [existeEnElCarrito, setExisteEnElCarrito] =
     useRecoilState(itemEnLocalStorage);
 
-  const { addToCart, deleteToCart, cleanCart, itemsCart } = React.useContext(
-    CartContext
-  ) as TodoContextType;
+  const { addToCart, deleteToCart, cleanCart, itemsCart, getBuy } =
+    React.useContext(CartContext) as TodoContextType;
 
+  // Math.random() para el id podria ser
   const additem = (item: CallFetch) => {
-    addToCart({ ...item, id: Math.random() });
+    addToCart({ ...item, id: item.id });
     setRender(true);
   };
 
-  // (encontrar el producto correspondiente al botón al que se le ha dado click)
-  //  React.useEffect(() => {
-  //   const updatedItems = itemsCart.map((item) => {
-  //     if (item.id === id) {
-  //       return { ...item, quantity: valueTotal };
-  //     }
-  //   }, [])
+  //funcion que chequea si el item está en el carrito
+  const handleButtonId = (id: number) => {
+    const existeEnLocalStorage = localStorage.getItem("cart");
+    if (existeEnLocalStorage) {
+      const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
+        (e: any) => e.id === id
+      );
+      if (buscandoElObjeto) {
+        setExisteEnElCarrito(true);
+      } else {
+        setExisteEnElCarrito(false);
+      }
+    }
+  };
 
   return (
     <div
@@ -74,6 +81,9 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
             onClick={() => additem(respuesta)}
           >
             Agregar al carrito
+          </button>
+          <button onClick={() => handleButtonId(respuesta.id)}>
+            Agarrar ID
           </button>
           <Link
             to={`/detail/${respuesta.id}`}
