@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { CartContext, TodoContextType } from "../../../../context/CartContext";
 import { CallFetch } from "../../../../interfaces/CallFetch";
+import { useRecoilState } from "recoil";
+import { itemEnLocalStorage } from "../../../../atoms/atoms";
+import "./itemsComponent.css";
 
 const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
   const [render, setRender] = useState(false);
+  const [existeEnElCarrito, setExisteEnElCarrito] =
+    useRecoilState(itemEnLocalStorage);
 
   const { addToCart, deleteToCart, cleanCart, itemsCart } = React.useContext(
     CartContext
@@ -15,6 +20,14 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
     addToCart({ ...item, id: Math.random() });
     setRender(true);
   };
+
+  // (encontrar el producto correspondiente al botón al que se le ha dado click)
+  //  React.useEffect(() => {
+  //   const updatedItems = itemsCart.map((item) => {
+  //     if (item.id === id) {
+  //       return { ...item, quantity: valueTotal };
+  //     }
+  //   }, [])
 
   return (
     <div
@@ -26,14 +39,6 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
       }}
     >
       <h3>{respuesta.title}</h3>
-      {/* <span>ID: {respuesta.id}</span>
-      <br />
-      <span>USER ID: {respuesta.userId}</span>
-      <br />
-      <span>{respuesta.category}</span>
-      <br />
-      <span>STOCK: {respuesta.stock}</span>
-      <br /> */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img src={respuesta.img} height="300"></img>
       </div>
@@ -64,7 +69,12 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
             gap: 10,
           }}
         >
-          <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
+          <button
+            className={existeEnElCarrito ? "desaparecer" : ""}
+            onClick={() => additem(respuesta)}
+          >
+            Agregar al carrito
+          </button>
           <Link
             to={`/detail/${respuesta.id}`}
             style={{

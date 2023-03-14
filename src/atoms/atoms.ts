@@ -20,3 +20,7 @@ export const cantidadStock = atom({
   default: 0
 })
 
+export const itemEnLocalStorage = atom({
+  key: "itemEnLocalStorage",
+  default: false
+})
