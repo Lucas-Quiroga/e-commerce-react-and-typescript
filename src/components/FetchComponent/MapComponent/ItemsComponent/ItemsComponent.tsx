@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { CartContext, TodoContextType } from "../../../../context/CartContext";
@@ -15,26 +15,39 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
   const { addToCart, deleteToCart, cleanCart, itemsCart, getBuy } =
     React.useContext(CartContext) as TodoContextType;
 
-  // Math.random() para el id podria ser
-  const additem = (item: CallFetch) => {
-    addToCart({ ...item, id: item.id });
-    setRender(true);
-  };
-
-  //funcion que chequea si el item está en el carrito
-  const handleButtonId = (id: number) => {
-    const existeEnLocalStorage = localStorage.getItem("cart");
-    if (existeEnLocalStorage) {
-      const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
-        (e: any) => e.id === id
-      );
-      if (buscandoElObjeto) {
-        setExisteEnElCarrito(true);
-      } else {
-        setExisteEnElCarrito(false);
+    useEffect(() => {
+      const existeEnLocalStorage = localStorage.getItem("cart");
+      if (existeEnLocalStorage) {
+        const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
+          (e: any) => e.id === respuesta.id
+        );
+        if (buscandoElObjeto) {
+          setExisteEnElCarrito(true);
+          setRender(true);
+        }
       }
-    }
-  };
+    }, []);
+  
+    const additem = (item: CallFetch) => {
+      addToCart({ ...item, id: item.id });
+      setRender(true);
+      handleButtonId(item.id);
+    };
+  
+    const handleButtonId = (id: number) => {
+      const existeEnLocalStorage = localStorage.getItem("cart");
+      if (existeEnLocalStorage) {
+        const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
+          (e: any) => e.id === id
+        );
+        if (buscandoElObjeto) {
+          setExisteEnElCarrito(true);
+        } else {
+          setExisteEnElCarrito(false);
+        }
+      }
+    };
+
 
   return (
     <div
@@ -75,16 +88,12 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
             width: "100%",
             gap: 10,
           }}
+          className={existeEnElCarrito ? "" : "desaparecer" }
         >
-          <button
-            className={existeEnElCarrito ? "desaparecer" : ""}
-            onClick={() => additem(respuesta)}
-          >
-            Agregar al carrito
-          </button>
-          <button onClick={() => handleButtonId(respuesta.id)}>
+          <button onClick={() => additem(respuesta)} >Agregar al carrito</button>
+          {/* <button onClick={() => handleButtonId(respuesta.id)}>
             Agarrar ID
-          </button>
+          </button> */}
           <Link
             to={`/detail/${respuesta.id}`}
             style={{
