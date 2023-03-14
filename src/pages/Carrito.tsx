@@ -27,16 +27,17 @@ function Carrito() {
 					justifyContent: 'center',
 					alignItems: 'center',
 					flexWrap: 'wrap',
+					gap: 5,
 				}}
 			>
-				{itemsCart.map(({id, title, img, stock, price}) => (
+				{itemsCart.map(({ id, title, img, stock, price }) => (
 					<div
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'center',
 							alignItems: 'center',
-							borderBottom: '3px solid black',
+							border: '1px solid black',
 							marginBottom: 5,
 							padding: 5,
 						}}
@@ -45,7 +46,11 @@ function Carrito() {
 						<img
 							src={img}
 							alt='item'
-							style={{ height: 200, width: 200 }}
+							style={{
+								height: 200,
+								width: 200,
+								objectFit: 'cover',
+							}}
 						/>
 						<p style={{ margin: 0 }}>Price: ${price}</p>
 						<p>Stock: {stock}</p>
@@ -53,24 +58,23 @@ function Carrito() {
 						<ButtonComponent id={id} totalPrice={totalPrice} />
 					</div>
 				))}
-				
 			</div>
-      <div
-					style={{
-						display: 'flex',
-						justifyContent: 'center',
-            flexDirection: 'column',
-						alignItems: 'center',
-						gap: 5,
-					}}
-				>
-					<h2 style={{ color: 'black', textAlign: 'center' }}>
-						Total a pagar: ${Math.floor(totalPrice)}
-					</h2>
-					<Link to='/category'>
-						<button>Volver</button>
-					</Link>
-				</div>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'center',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 5,
+				}}
+			>
+				<h2 style={{ color: 'black', textAlign: 'center' }}>
+					Total a pagar: ${Math.floor(totalPrice)}
+				</h2>
+				<Link to='/category'>
+					<button>Volver</button>
+				</Link>
+			</div>
 		</div>
 	)
 }
