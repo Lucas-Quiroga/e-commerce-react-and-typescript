@@ -46,6 +46,9 @@ const Navbar = () => {
             </Link>
           )}
         </li>
+        <div className="circle-red">
+          <div className="circle-number">1</div>
+        </div>
       </ul>
     </nav>
   );
