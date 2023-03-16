@@ -11,43 +11,43 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
   const [render, setRender] = useState(false);
   const [existeEnElCarrito, setExisteEnElCarrito] =
     useRecoilState(itemEnLocalStorage);
+  const [imagenGris, setImagenGris] = useState(existeEnElCarrito);
 
   const { addToCart, deleteToCart, cleanCart, itemsCart, getBuy } =
     React.useContext(CartContext) as TodoContextType;
 
-    useEffect(() => {
-      const existeEnLocalStorage = localStorage.getItem("cart");
-      if (existeEnLocalStorage) {
-        const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
-          (e: any) => e.id === respuesta.id
-        );
-        if (buscandoElObjeto) {
-          setExisteEnElCarrito(true);
-          setRender(true);
-        }
+  useEffect(() => {
+    const existeEnLocalStorage = localStorage.getItem("cart");
+    if (existeEnLocalStorage) {
+      const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
+        (e: any) => e.id === respuesta.id
+      );
+      if (buscandoElObjeto) {
+        setExisteEnElCarrito(true);
+        setRender(true);
       }
-    }, []);
-  
-    const additem = (item: CallFetch) => {
-      addToCart({ ...item, id: item.id });
-      setRender(true);
-      handleButtonId(item.id);
-    };
-  
-    const handleButtonId = (id: number) => {
-      const existeEnLocalStorage = localStorage.getItem("cart");
-      if (existeEnLocalStorage) {
-        const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
-          (e: any) => e.id === id
-        );
-        if (buscandoElObjeto) {
-          setExisteEnElCarrito(true);
-        } else {
-          setExisteEnElCarrito(false);
-        }
-      }
-    };
+    }
+  }, []);
 
+  const additem = (item: CallFetch) => {
+    addToCart({ ...item, id: item.id });
+    setRender(true);
+    handleButtonId(item.id);
+  };
+
+  const handleButtonId = (id: number) => {
+    const existeEnLocalStorage = localStorage.getItem("cart");
+    if (existeEnLocalStorage) {
+      const buscandoElObjeto = JSON.parse(existeEnLocalStorage).find(
+        (e: any) => e.id === id
+      );
+      if (buscandoElObjeto) {
+        setExisteEnElCarrito(true);
+      } else {
+        setExisteEnElCarrito(false);
+      }
+    }
+  };
 
   return (
     <div
@@ -60,7 +60,15 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
     >
       <h3>{respuesta.title}</h3>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={respuesta.img} height="300"></img>
+        {imagenGris ? (
+          <img
+            className="img-foto-gris"
+            src={respuesta.img}
+            style={{ height: 300, filter: "brightness(50%)" }}
+          ></img>
+        ) : (
+          <img src={respuesta.img} style={{ height: 300 }}></img>
+        )}
       </div>
       <span style={{ fontWeight: 700 }}>${respuesta.price}</span>
       <br />
@@ -88,9 +96,9 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
             width: "100%",
             gap: 10,
           }}
-          className={existeEnElCarrito ? "" : "desaparecer" }
+          className={existeEnElCarrito ? "" : "desaparecer"}
         >
-          <button onClick={() => additem(respuesta)} >Agregar al carrito</button>
+          <button onClick={() => additem(respuesta)}>Agregar al carrito</button>
           {/* <button onClick={() => handleButtonId(respuesta.id)}>
             Agarrar ID
           </button> */}

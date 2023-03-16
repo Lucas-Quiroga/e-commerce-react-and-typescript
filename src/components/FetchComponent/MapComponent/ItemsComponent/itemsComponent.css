@@ -1,3 +1,7 @@
 .desaparecer {
   display: none;
 }
+
+.img-foto-gris {
+  filter: brightness(50%);
+}

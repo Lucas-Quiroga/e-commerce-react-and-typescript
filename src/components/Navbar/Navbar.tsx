@@ -19,6 +19,8 @@ const Navbar = () => {
     setIsLoggedIn(false);
   };
 
+  const totalQuantity = itemsCart.reduce((acc, b) => acc + b.quantity, 0);
+
   return (
     <nav className="navbar">
       <ul className="ul_navbar">
@@ -41,14 +43,16 @@ const Navbar = () => {
           {itemsCart.length === 0 ? (
             ""
           ) : (
-            <Link to="/carrito">
-              <FontAwesomeIcon icon={faShoppingCart} />
-            </Link>
+            <>
+              <Link to="/carrito">
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </Link>
+              <div className="circle-red">
+                <div className="circle-number">{totalQuantity}</div>
+              </div>
+            </>
           )}
         </li>
-        <div className="circle-red">
-          <div className="circle-number">1</div>
-        </div>
       </ul>
     </nav>
   );

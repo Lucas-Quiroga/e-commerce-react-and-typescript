@@ -26,8 +26,7 @@
 }
 
 .circle-red{
- 
-  position: relative;
+  position: inherit;
   background-color: black ;
   height: 22px;
   width: 22px;
