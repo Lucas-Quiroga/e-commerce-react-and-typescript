@@ -11,7 +11,7 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
   const [render, setRender] = useState(false);
   const [existeEnElCarrito, setExisteEnElCarrito] =
     useRecoilState(itemEnLocalStorage);
-  const [imagenGris, setImagenGris] = useState(existeEnElCarrito);
+  const [busquedaParaElCSS, setBusquedaParaElCSS] = useState();
 
   const { addToCart, deleteToCart, cleanCart, itemsCart, getBuy } =
     React.useContext(CartContext) as TodoContextType;
@@ -24,6 +24,7 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
       );
       if (buscandoElObjeto) {
         setExisteEnElCarrito(true);
+        setBusquedaParaElCSS(buscandoElObjeto);
         setRender(true);
       }
     }
@@ -60,15 +61,14 @@ const ItemsComponent = ({ respuesta }: { respuesta: CallFetch }) => {
     >
       <h3>{respuesta.title}</h3>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        {imagenGris ? (
-          <img
-            className="img-foto-gris"
-            src={respuesta.img}
-            style={{ height: 300, filter: "brightness(50%)" }}
-          ></img>
-        ) : (
-          <img src={respuesta.img} style={{ height: 300 }}></img>
-        )}
+        <img
+          src={respuesta.img}
+          style={
+            busquedaParaElCSS
+              ? { height: 300, filter: "brightness(50%)" }
+              : { height: 300 }
+          }
+        ></img>
       </div>
       <span style={{ fontWeight: 700 }}>${respuesta.price}</span>
       <br />

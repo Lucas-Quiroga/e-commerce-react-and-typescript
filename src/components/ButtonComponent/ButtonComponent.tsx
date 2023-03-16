@@ -44,6 +44,7 @@ export const ButtonComponent = ({
         if (item.id === id) {
           return { ...item, quantity: valueTotal };
         }
+
         return item;
       });
       setItemsCart(updatedItems);
