@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Register from "../Register/Register";
 import { useRecoilState } from "recoil";
 import { login, firstName } from "../../atoms/atoms";
-import Shop from "../Shop/Shop";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
@@ -82,7 +81,6 @@ const Login = () => {
             </button>
           </form>
           <button onClick={() => setShowRegister(!false)}>Register</button>
-          <Shop />
         </div>
       )}
     </>

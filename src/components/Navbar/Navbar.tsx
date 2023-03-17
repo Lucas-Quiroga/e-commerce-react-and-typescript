@@ -7,6 +7,7 @@ import { TodoContextType } from "../../context/CartContext";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import ViewItemsButton from "../ViewItemsButton/ViewItemsButton";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(login);
@@ -18,8 +19,6 @@ const Navbar = () => {
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
-
-  const totalQuantity = itemsCart.reduce((acc, b) => acc + b.quantity, 0);
 
   return (
     <nav className="navbar">
@@ -47,13 +46,11 @@ const Navbar = () => {
               <Link to="/carrito">
                 <FontAwesomeIcon icon={faShoppingCart} />
               </Link>
-              <div className="circle-red">
-                <div className="circle-number">{totalQuantity}</div>
-              </div>
             </>
           )}
         </li>
       </ul>
+      {/* {itemsCart.length === 0 ? "" : <ViewItemsButton />} */}
     </nav>
   );
 };

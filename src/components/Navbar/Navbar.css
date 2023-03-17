@@ -24,24 +24,3 @@
 .sections:hover {
   transform: scale(1.2);
 }
-
-.circle-red{
-  position: inherit;
-  background-color: black ;
-  height: 22px;
-  width: 22px;
-  left: 20rem;
-  border-radius: 100px ;
-  transition: 0.4s;
-}
-
-.circle-red:hover {
-  transform: translateX(0.25rem);
-}
-
-.circle-number{
-  position: relative;
-  box-sizing: content-box;
-  color: white;
-  left: 6px;
-}
