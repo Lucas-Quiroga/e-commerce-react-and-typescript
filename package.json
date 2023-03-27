@@ -1,6 +1,19 @@
 {
   "name": "e-commerce-react-and-typescript",
   "version": "0.1.0",
+  "description": "Este proyecto consiste en la venta de productos y poder registrar al usuario para que pueda tener descuentos con sus compras en general",
+  "main": "App.tsx",
+  "keywords": [
+    "e-commerce",
+    "admin",
+    "login",
+    "register",
+    "typescript",
+    "nodejs",
+    "vintage","clothes"
+  ],
+  "author": "Elias Vedovato y Lucas Quiroga",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -25,6 +38,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "node src/App.tsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -46,5 +60,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lucas-Quiroga/e-commerce-react-and-typescript"
   }
 }
